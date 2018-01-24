@@ -1,6 +1,7 @@
-import Door from './Door';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+
+import Door from './Door';
 import ImageFiller from './ImageFiller';
 
 export default class Content extends Component {

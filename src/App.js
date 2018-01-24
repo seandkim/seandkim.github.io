@@ -3,6 +3,7 @@ import Content from './components/Content';
 import Logo from './components/Logo';
 import Nav from './components/Nav';
 import PropTypes from 'prop-types';
+import MediaQuery from 'react-responsive';
 import './styles/App.css';
 
 export default class App extends Component {
@@ -32,14 +33,23 @@ export default class App extends Component {
     const { currentPage, focused } = this.state;
 
     return (
-      <div style={wrapperStyle}>
-        <Logo />
-        <div style={flexStyle}>
-          <Nav currentPage={currentPage} focused={focused}
-            handlePageChange={this.handlePageChange}/>
-          <Content currentPage={currentPage} focused={focused}
-            handlePageChange={this.handlePageChange}/>
-        </div>
+      <div>
+        <MediaQuery maxDeviceWidth={1224}>
+          hello
+        </MediaQuery>
+        <MediaQuery minDeviceWidth={1224}>
+          <div style={wrapperStyle}>
+            <Logo />
+            <div style={flexStyle}>
+              <Nav currentPage={currentPage} focused={focused}
+                handlePageChange={this.handlePageChange}/>
+              <Content currentPage={currentPage} focused={focused}
+                handlePageChange={this.handlePageChange}/>
+            </div>
+          </div>
+        </MediaQuery>
+        <MediaQuery orientation="landscape">
+        </MediaQuery>
       </div>
     );
   }

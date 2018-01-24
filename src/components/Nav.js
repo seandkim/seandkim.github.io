@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import ImageFiller from './ImageFiller';
 import '../styles/Nav.css';
+
+import ImageFiller from './ImageFiller';
 
 export default class Nav extends Component {
     constructor(props) {
