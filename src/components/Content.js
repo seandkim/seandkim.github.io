@@ -10,7 +10,6 @@ export default class Content extends Component {
 
         this.state = {
             // TODO change to parent's state and create getter and setter
-
             currentPage: 'about me',
             focused: false,
         }
@@ -19,18 +18,18 @@ export default class Content extends Component {
     render() {
         const { currentPage } = this.state
 
-        colorStyle['backgroundColor'] = this.context.colors.warmBlue;
-        doorNameStyle['color'] = this.context.colors.darkGray;
-
+        const colorStyle1 = { ...colorStyle, 'backgroundColor': this.context.colors.warmBlue };
+        const doorNameStyle1 = { ...doorNameStyle, 'color': this.context.colors.darkGray };
         const doorBorderColor = this.context.colors.darkGray
+
         return (
-            <div style={ wrapperStyle }>
+            <div className="content" style={ wrapperStyle }>
                 <ImageFiller imageName="grey-linen" />
-                <div style={ colorStyle }>
+                <div style={ colorStyle1 }>
                     <div style={ doorWrapperStyle }>
-                        <div style={doorNameStyle}>{currentPage }</div>
+                        <div style={doorNameStyle1}>{currentPage}</div>
                         <Door type="about me" borderColor={doorBorderColor}/>
-                        <div style={ doorNameStyle }>Click to Enter</div>
+                        <div style={ doorNameStyle1 }>Click to Enter</div>
                     </div>
                 </div>
             </div>

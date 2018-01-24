@@ -20,7 +20,6 @@ export default class Nav extends Component {
             const thisPage = this.pages[i];
             let thisTabStyle = { ...menuTabStyle };
             if (i === this.pages.indexOf(currentPage)) {
-                console.log("entered!")
                 thisTabStyle['textDecoration'] = 'underline';
             }
             tabs.push(<div style={thisTabStyle} key={i}>{thisPage}</div>)

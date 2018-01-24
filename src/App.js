@@ -3,7 +3,7 @@ import Content from './components/Content';
 import Logo from './components/Logo';
 import Nav from './components/Nav';
 import PropTypes from 'prop-types';
-import MediaQuery from 'react-responsive';
+import Media from "react-media";
 import './styles/App.css';
 
 export default class App extends Component {
@@ -34,22 +34,33 @@ export default class App extends Component {
 
     return (
       <div>
-        <MediaQuery maxDeviceWidth={1224}>
-          hello
-        </MediaQuery>
-        <MediaQuery minDeviceWidth={1224}>
-          <div style={wrapperStyle}>
-            <Logo />
-            <div style={flexStyle}>
-              <Nav currentPage={currentPage} focused={focused}
-                handlePageChange={this.handlePageChange}/>
-              <Content currentPage={currentPage} focused={focused}
-                handlePageChange={this.handlePageChange}/>
-            </div>
-          </div>
-        </MediaQuery>
-        <MediaQuery orientation="landscape">
-        </MediaQuery>
+        <Media query="(max-width: 599px)">
+          {(matches) => {
+            if (matches) {
+              return (
+                <div style={wrapperStyle}>
+                  <Logo />
+                  <div style={flexStyle}>
+                    <Content mediaQuery='small' currentPage={currentPage} focused={focused}
+                      handlePageChange={this.handlePageChange} />
+                  </div>
+                </div>
+              )
+            } else {
+              return (
+                <div style={wrapperStyle}>
+                  <Logo />
+                  <div style={flexStyle}>
+                    <Nav mediaQuery='large' currentPage={currentPage} focused={focused}
+                      handlePageChange={this.handlePageChange} />
+                    <Content mediaQuery='large' currentPage={currentPage} focused={focused}
+                      handlePageChange={this.handlePageChange} />
+                  </div>
+                </div>
+              )
+            }
+          }}
+        </Media>
       </div>
     );
   }

@@ -26,7 +26,7 @@ export default class ImageFiller extends Component {
             ...customStyle,
         }
         return (
-            <div style={imgStyle}></div>
+            <div className="imageFiller" style={imgStyle}></div>
         );
     }
 }

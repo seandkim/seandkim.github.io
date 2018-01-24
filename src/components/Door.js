@@ -12,9 +12,10 @@ export default class Door extends Component {
 
     render() {
         return (
-            <div style={{ ...this.borderStyle, ...outerDoor }}>
-                <div style={{ ...this.borderStyle, ...innerDoor }}></div>
-                <div style={{ ...this.borderStyle, ...doorKnob }}></div>
+            <div className="door" style={{ ...this.borderStyle, ...outerDoor }}>
+                <div style={{ ...this.borderStyle, ...innerDoor }} />
+                <div style={{ ...this.borderStyle, ...doorKnob,
+                    backgroundColor: this.props.borderColor  }} />
             </div>
         )
     }
@@ -39,5 +40,5 @@ const doorKnob = {
     right: '3px',
     width: '1vh',
     height: '1vh',
-    borderRadius: '1.5vh',
+    borderRadius: '2vh',
 }
