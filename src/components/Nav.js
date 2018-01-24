@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import aboutCover from '../images/cover/about.png'
+import ImageFiller from './ImageFiller';
 import '../styles/Nav.css';
 
-class Nav extends Component {
+export default class Nav extends Component {
     constructor(props) {
         super(props);
         this.pages = ['about me', 'projects', 'big fish'];
@@ -13,12 +13,23 @@ class Nav extends Component {
     }
 
     render() {
+        const { currentPage, focused } = this.state;
+        const tabs = []
+        for (var i=0; i<this.pages.length; i++) {
+            const thisPage = this.pages[i];
+            let thisTabStyle = { ...menuTabStyle };
+            if (i === this.pages.indexOf(currentPage)) {
+                console.log("entered!")
+                thisTabStyle['textDecoration'] = 'underline';
+            }
+            tabs.push(<div style={thisTabStyle} key={i}>{thisPage}</div>)
+        }
+
         return (
-            <div className="about-image" style={wrapperStyle}>
-                <div style={menuWrapperStyle}>
-                    <div>about me</div>
-                    <div>projects</div>
-                    <div>big fish</div>
+            <div style={wrapperStyle}>
+                <ImageFiller imageName='about-cover' />
+                <div style={ menuWrapperStyle }>
+                    { tabs }
                 </div>
             </div>
         );
@@ -26,6 +37,7 @@ class Nav extends Component {
 }
 
 const wrapperStyle = {
+    position: 'relative',
     width: '50vw',
     height: '100vh',
     display: 'flex',
@@ -40,4 +52,8 @@ const menuWrapperStyle = {
     color: 'white',
 }
 
-export default Nav;
+const menuTabStyle = {
+    fontFamily: 'Roboto',
+    fontSize: '25px',
+    margin: '1vh',
+}

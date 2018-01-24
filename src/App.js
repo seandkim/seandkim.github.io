@@ -1,20 +1,52 @@
 import React, { Component } from 'react';
-import './styles/App.css';
-import Nav from './components/Nav';
 import Content from './components/Content';
+import Logo from './components/Logo';
+import Nav from './components/Nav';
+import PropTypes from 'prop-types';
+import './styles/App.css';
 
-class App extends Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentPage: 'about me',
+      focused: false,
+    }
+  }
+
+  getChildContext() {
+    return {
+      colors: {
+        darkGray: "#4A4A4A",
+        warmBlue: "rgba(77, 97, 103, 0.66)",
+      }
+    };
+  }
+
+  handlePageChange(currentPage) {
+    this.setState({ currentpage: currentPage, focused: false })
+  }
+
   render() {
+    const { currentPage, focused } = this.state;
+
     return (
       <div style={wrapperStyle}>
-        {/* <div styles={{ position: 'absolute' }} className="logo">SEAN D KIM</div> */}
+        <Logo />
         <div style={flexStyle}>
-          <Nav></Nav>
-          <Content></Content>
+          <Nav currentPage={currentPage} focused={focused}
+            handlePageChange={this.handlePageChange}/>
+          <Content currentPage={currentPage} focused={focused}
+            handlePageChange={this.handlePageChange}/>
         </div>
       </div>
     );
   }
+}
+
+App.childContextTypes = {
+  colors: PropTypes.object,
 }
 
 const wrapperStyle = {
@@ -23,8 +55,7 @@ const wrapperStyle = {
 }
 
 const flexStyle = {
+  position: 'relative',
   display: 'flex',
   flexDirection: 'row',
 }
-
-export default App;
