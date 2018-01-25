@@ -4,15 +4,23 @@ export default class Door extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            borderColor: this.props.borderColor,
+        }
+
+        console.log(this.props.borderColor);
+
         this.borderStyle = {
-            border: "3px solid " + this.props.borderColor,
+            borderColor: this.props.borderColor,
+            borderWidth: "3px",
+            borderStyle: "solid",
             borderRadius: "0.5vh",
         }
     }
 
     render() {
         return (
-            <div className="door" style={{ ...this.borderStyle, ...outerDoor }}>
+            <div className="Door" style={{ ...this.borderStyle, ...outerDoor }}>
                 <div style={{ ...this.borderStyle, ...innerDoor }} />
                 <div style={{ ...this.borderStyle, ...doorKnob,
                     backgroundColor: this.props.borderColor  }} />

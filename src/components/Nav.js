@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/Nav.css';
 
-import ImageFiller from './ImageFiller';
-
 export default class Nav extends Component {
     constructor(props) {
         super(props);
@@ -26,22 +24,11 @@ export default class Nav extends Component {
         }
 
         return (
-            <div style={wrapperStyle}>
-                <ImageFiller imageName='about-cover' />
-                <div style={ menuWrapperStyle }>
-                    { tabs }
-                </div>
+            <div className="Nav" style={ menuWrapperStyle }>
+                { tabs }
             </div>
         );
     }
-}
-
-const wrapperStyle = {
-    position: 'relative',
-    width: '50vw',
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
 }
 
 const menuWrapperStyle = {

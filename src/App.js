@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import Content from './components/Content';
-import Logo from './components/Logo';
-import Nav from './components/Nav';
 import PropTypes from 'prop-types';
 import Media from "react-media";
 import './styles/App.css';
+
+import Content from './components/Content';
+import ImageFiller from './components/ImageFiller';
+import Logo from './components/Logo';
+import Nav from './components/Nav';
 
 export default class App extends Component {
   constructor(props) {
@@ -41,8 +43,10 @@ export default class App extends Component {
                 <div style={wrapperStyle}>
                   <Logo />
                   <div style={flexStyle}>
-                    <Content mediaQuery='small' currentPage={currentPage} focused={focused}
-                      handlePageChange={this.handlePageChange} />
+                    <ImageFiller imageName='about-cover'>
+                      <Content mediaQuery='small' currentPage={currentPage} focused={focused}
+                        handlePageChange={this.handlePageChange} />
+                    </ImageFiller>
                   </div>
                 </div>
               )
@@ -51,10 +55,18 @@ export default class App extends Component {
                 <div style={wrapperStyle}>
                   <Logo />
                   <div style={flexStyle}>
-                    <Nav mediaQuery='large' currentPage={currentPage} focused={focused}
-                      handlePageChange={this.handlePageChange} />
-                    <Content mediaQuery='large' currentPage={currentPage} focused={focused}
-                      handlePageChange={this.handlePageChange} />
+                    <div style={halfScreenStyle}>
+                      <ImageFiller imageName='about-cover'>
+                        <Nav mediaQuery='large' currentPage={currentPage} focused={focused}
+                          handlePageChange={this.handlePageChange} />
+                      </ImageFiller>
+                    </div>
+                    <div style={halfScreenStyle}>
+                      <ImageFiller imageName="grey-linen" colorName="warmBlue">
+                        <Content mediaQuery='large' currentPage={currentPage} focused={focused}
+                          handlePageChange={this.handlePageChange} />
+                      </ImageFiller>
+                    </div>
                   </div>
                 </div>
               )
@@ -77,6 +89,19 @@ const wrapperStyle = {
 
 const flexStyle = {
   position: 'relative',
+  width: '100%',
+  height: '100%',
   display: 'flex',
   flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
+const halfScreenStyle = {
+  position: 'relative',
+  width: '50vw',
+  height: '100vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }
