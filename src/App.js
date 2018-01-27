@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Media from "react-media";
 import './styles/App.css';
 
@@ -41,7 +41,7 @@ export default class App extends Component {
             if (matches) {
               return (
                 <div style={wrapperStyle}>
-                  <Logo />
+                  <Logo align='center'/>
                   <div style={flexStyle}>
                     <ImageFiller imageName='about-cover'>
                       <Content mediaQuery='small' currentPage={currentPage} focused={focused}
@@ -53,7 +53,7 @@ export default class App extends Component {
             } else {
               return (
                 <div style={wrapperStyle}>
-                  <Logo />
+                  <Logo align='left'/>
                   <div style={flexStyle}>
                     <div style={halfScreenStyle}>
                       <ImageFiller imageName='about-cover'>

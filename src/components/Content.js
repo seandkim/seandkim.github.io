@@ -34,6 +34,11 @@ export default class Content extends Component {
     }
 }
 
+Content.propTypes = {
+    mediaQuery: PropTypes.string,
+    currentPage: PropTypes.string,
+};
+
 Content.contextTypes = {
     colors: PropTypes.object,
 }
