@@ -1,14 +1,9 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 export default class Door extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            borderColor: this.props.borderColor,
-        }
-
-        console.log(this.props.borderColor);
 
         this.borderStyle = {
             borderColor: this.props.borderColor,
@@ -20,13 +15,18 @@ export default class Door extends Component {
 
     render() {
         return (
-            <div className="Door" style={{ ...this.borderStyle, ...outerDoor }}>
+            <div className="Door" style={{ ...this.borderStyle, ...outerDoor }} onClick={this.props.onClick}>
                 <div style={{ ...this.borderStyle, ...innerDoor }} />
                 <div style={{ ...this.borderStyle, ...doorKnob,
                     backgroundColor: this.props.borderColor  }} />
             </div>
         )
     }
+};
+
+Door.propTypes = {
+    borderColor: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
 };
 
 const outerDoor = {

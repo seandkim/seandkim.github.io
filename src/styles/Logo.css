@@ -1,0 +1,5 @@
+.Logo.vertical {
+    transform: rotate(90deg);
+    transform-origin: top left;
+    transition: transform 300ms ease-in-out;
+}

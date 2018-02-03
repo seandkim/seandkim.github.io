@@ -22,7 +22,22 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.leftSide.focused {
+  animation: focused-left 500ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.rightSide.focused {
+  animation: focused-right 500ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes focused-left {
+  from { width: 50vw; }
+  to { width: 10vw; }
+}
+
+@keyframes focused-right {
+  from { width: 50vw; }
+  to { width: 90vw; }
 }

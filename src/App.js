@@ -1,6 +1,6 @@
+import Media from "react-media";
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Media from "react-media";
 import './styles/App.css';
 
 import Content from './components/Content';
@@ -28,7 +28,11 @@ export default class App extends Component {
   }
 
   handlePageChange(currentPage) {
-    this.setState({ currentpage: currentPage, focused: false })
+    this.setState({ currentpage: currentPage, focused: false });
+  }
+
+  handleDoorClick() {
+    this.setState({ focused: true });
   }
 
   render() {
@@ -36,41 +40,51 @@ export default class App extends Component {
 
     return (
       <div>
-        <Media query="(max-width: 599px)">
+        <Media query="(max-width: 750px)">
           {(matches) => {
+            const mediaQuery = matches ? 'small' : 'large';
+            const content = (
+              <Content mediaQuery={mediaQuery} currentPage={currentPage} focused={focused}
+                handlePageChange={this.handlePageChange.bind(this)}
+                handleDoorClick={this.handleDoorClick.bind(this)} />
+            )
+
             if (matches) {
               return (
                 <div style={wrapperStyle}>
                   <Logo align='center'/>
                   <div style={flexStyle}>
                     <ImageFiller imageName='about-cover'>
-                      <Content mediaQuery='small' currentPage={currentPage} focused={focused}
-                        handlePageChange={this.handlePageChange} />
+                      {content}
                     </ImageFiller>
                   </div>
                 </div>
               )
-            } else {
-              return (
-                <div style={wrapperStyle}>
-                  <Logo align='left'/>
-                  <div style={flexStyle}>
-                    <div style={halfScreenStyle}>
-                      <ImageFiller imageName='about-cover'>
-                        <Nav mediaQuery='large' currentPage={currentPage} focused={focused}
-                          handlePageChange={this.handlePageChange} />
-                      </ImageFiller>
-                    </div>
-                    <div style={halfScreenStyle}>
-                      <ImageFiller imageName="grey-linen" colorName="warmBlue">
-                        <Content mediaQuery='large' currentPage={currentPage} focused={focused}
-                          handlePageChange={this.handlePageChange} />
-                      </ImageFiller>
-                    </div>
+            }
+
+            const leftClass = focused ? "leftSide focused" : "leftSide"
+            const rightClass = focused ? "rightSide focused" : "rightSide"
+
+            return (
+              <div className="App" style={wrapperStyle}>
+                <Logo align='left' vertical={focused ? true : false}/>
+                <div style={flexStyle}>
+                  <div className={leftClass} style={halfScreenStyle}>
+                    <ImageFiller imageName='about-cover'>
+                      <Nav mediaQuery='large' currentPage={currentPage} focused={focused}
+                        handlePageChange={this.handlePageChange} />
+                    </ImageFiller>
+                  </div>
+                  <div className={rightClass} style={halfScreenStyle}>
+                    <ImageFiller imageName="grey-linen" colorName="warmBlue">
+                      <Content mediaQuery={mediaQuery} currentPage={currentPage} focused={focused}
+                        handlePageChange={this.handlePageChange.bind(this)}
+                        handleDoorClick={this.handleDoorClick.bind(this)} />
+                    </ImageFiller>
                   </div>
                 </div>
-              )
-            }
+              </div>
+            )
           }}
         </Media>
       </div>

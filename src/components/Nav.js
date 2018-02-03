@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../styles/Nav.css';
 
 export default class Nav extends Component {
     constructor(props) {

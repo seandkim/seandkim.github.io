@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import Door from './Door';
-import ImageFiller from './ImageFiller';
 
 export default class Content extends Component {
     constructor(props) {
@@ -17,17 +16,17 @@ export default class Content extends Component {
     }
 
     render() {
-        console.log("Content Render");
         const { currentPage } = this.state
 
         const textColor = this.props.mediaQuery === "small" ? 'white' : this.context.colors.darkGray;
         const doorNameStyle1 = { ...doorNameStyle, 'color': textColor };
         return (
-            <div className="Content" style={ wrapperStyle }>
-                <div style={ doorWrapperStyle }>
+            <div className="Content" style={wrapperStyle}>
+                <div style={doorWrapperStyle}>
                     <div style={doorNameStyle1}>{currentPage}</div>
-                    <Door type="about me" borderColor={textColor}/>
-                    <div style={ doorNameStyle1 }>Click to Enter</div>
+                    <Door type="about me" borderColor={textColor}
+                        onClick={this.props.handleDoorClick}/>
+                    <div style={doorNameStyle1}>Click to Enter</div>
                 </div>
             </div>
         );
@@ -35,8 +34,10 @@ export default class Content extends Component {
 }
 
 Content.propTypes = {
-    mediaQuery: PropTypes.string,
-    currentPage: PropTypes.string,
+    mediaQuery: PropTypes.string.isRequired,
+    currentPage: PropTypes.string.isRequired,
+    focused: PropTypes.bool.isRequired,
+    handleDoorClick: PropTypes.func.isRequired,
 };
 
 Content.contextTypes = {

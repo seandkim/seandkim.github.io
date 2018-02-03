@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
+import '../styles/Logo.css';
+
 export default class Logo extends Component {
     render() {
         let customStyle;
@@ -14,14 +16,22 @@ export default class Logo extends Component {
                 break;
         }
 
+        let classes = "Logo";
+        if (this.props.vertical) {
+            classes += " vertical";
+        }
+
         return (
-            <div style={{ ...logoStyle, ...customStyle }}>SEAN D KIM</div>
+            <div className={classes} style={{ ...logoStyle, ...customStyle }}>
+                SEAN D KIM
+            </div>
         );
     }
 }
 
 Logo.propTypes = {
-    align: PropTypes.string
+    align: PropTypes.string.isRequired,
+    vertical: PropTypes.bool.isRequired,
 };
 
 const logoStyle = {
