@@ -1,46 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { changeMedia, changePage, changeFocus } from "./../actions";
-
-class Door extends Component {
-  constructor(props) {
-    super(props);
-
-    this.borderStyle = {
-      borderColor: this.props.borderColor,
-      borderWidth: '3px',
-      borderStyle: 'solid',
-      borderRadius: '0.5vh',
-    };
-  }
-
-  render() {
-    return (
-      <div className="Door" style={{ ...this.borderStyle, ...outerDoor }} onClick={this.props.onClick}>
-        <div style={{ ...this.borderStyle, ...innerDoor }} />
-        <div style={{ ...this.borderStyle, ...doorKnob,
-          backgroundColor: this.props.borderColor  }} />
-      </div>
-    );
-  }
-}
-
-Door.propTypes = {
-  borderColor: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = state => ({
-  focused: state.focused,
-  media: state.media
-});
-
-const mapDispatchToProps = {
-  onClick: () => changeFocus(true),
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Door);
+import { changeFocus } from './../actions';
 
 const outerDoor = {
   position: 'relative',
@@ -63,3 +25,40 @@ const doorKnob = {
   height: '1vh',
   borderRadius: '2vh',
 };
+
+class Door extends Component {
+  constructor(props) {
+    super(props);
+
+    this.borderStyle = {
+      borderColor: this.props.borderColor,
+      borderWidth: '3px',
+      borderStyle: 'solid',
+      borderRadius: '0.5vh',
+    };
+  }
+
+  render() {
+    return (
+      <div className="Door" style={{ ...this.borderStyle, ...outerDoor }} onClick={this.props.onClick}>
+        <div style={{ ...this.borderStyle, ...innerDoor }} />
+        <div style={{ ...this.borderStyle, ...doorKnob, backgroundColor: this.props.borderColor }} />
+      </div>
+    );
+  }
+}
+
+Door.propTypes = {
+  borderColor: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = state => ({
+  focused: state.focused,
+  media: state.media,
+});
+
+const mapDispatchToProps = {
+  onClick: () => changeFocus(true),
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Door);

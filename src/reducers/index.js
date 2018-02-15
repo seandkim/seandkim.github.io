@@ -14,9 +14,8 @@ const pageReducer = (state = initialState, action) => {
         ...state,
         media: action.media,
       };
-    } else {
-      console.error('invalid action');
     }
+    console.error('invalid action');
     break;
   case 'CHANGE_PAGE':
     if (['about_me', 'projects', 'big_fish'].indexOf(action.pageName) !== -1) {
@@ -25,9 +24,8 @@ const pageReducer = (state = initialState, action) => {
         pageName: action.pageName,
         focused: false,
       };
-    } else {
-      console.error('invalid action');
     }
+    console.error('invalid action');
     break;
   case 'CHANGE_FOCUS':
     if ([true, false].indexOf(action.focused) !== -1) {
@@ -35,9 +33,8 @@ const pageReducer = (state = initialState, action) => {
         ...state,
         focused: action.focused,
       };
-    } else {
-      console.error('invalid action');
     }
+    console.error('invalid action');
     break;
   default:
     return state;

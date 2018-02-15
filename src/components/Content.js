@@ -4,23 +4,7 @@ import { connect } from 'react-redux';
 
 import Door from './Door';
 
-import { changeMedia, changePage, changeFocus } from "../actions";
-
-class Content extends Component {
-  render() {
-    const { currentPageName } = this.props;
-
-    const textColor = this.props.mediaQuery === 'small' ? 'white' : this.context.colors.darkGray;
-    const doorNameStyle1 = { ...doorNameStyle, 'color': textColor };
-    return <div className="Content" style={wrapperStyle}>
-      <div style={doorWrapperStyle}>
-        <div style={doorNameStyle1}>{currentPageName}</div>
-        <Door type="about me" borderColor={textColor} onClick={this.props.handleDoorClick} />
-        <div style={doorNameStyle1}>Click to Enter</div>
-      </div>
-    </div>;
-  }
-}
+// import { changeFocus } from '../actions';
 
 const wrapperStyle = {
   position: 'relative',
@@ -41,6 +25,24 @@ const doorNameStyle = {
   color: null, // darkGray, specified in render
 };
 
+class Content extends Component {
+  render() {
+    const { currentPageName } = this.props;
+
+    const textColor = this.props.media === 'small' ? 'white' : this.context.colors.darkGray;
+    const doorNameStyle1 = { ...doorNameStyle, color: textColor };
+    return (
+      <div className="Content" style={wrapperStyle}>
+        <div style={doorWrapperStyle}>
+          <div style={doorNameStyle1}>{currentPageName}</div>
+          <Door type="about me" borderColor={textColor} />
+          <div style={doorNameStyle1}>Click to Enter</div>
+        </div>
+      </div>
+    );
+  }
+}
+
 Content.propTypes = {
   currentPageName: PropTypes.string.isRequired,
   focused: PropTypes.bool.isRequired,
@@ -48,7 +50,7 @@ Content.propTypes = {
 };
 
 Content.contextTypes = {
-  colors: PropTypes.object
+  colors: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
