@@ -1,6 +1,7 @@
-import Media from "react-media";
+import Media from 'react-media';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './styles/App.css';
 
 import Content from './components/Content';
@@ -8,46 +9,36 @@ import ImageFiller from './components/ImageFiller';
 import Logo from './components/Logo';
 import Nav from './components/Nav';
 
-export default class App extends Component {
+import { changeMedia, changePage, changeFocus } from './actions';
+
+class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      currentPage: 'about me',
-      focused: false,
-    }
+    console.log("hello");
   }
 
   getChildContext() {
     return {
       colors: {
-        darkGray: "#4A4A4A",
-        warmBlue: "rgba(77, 97, 103, 0.66)",
+        darkGray: '#4A4A4A',
+        warmBlue: 'rgba(77, 97, 103, 0.66)',
       }
     };
   }
 
-  handlePageChange(currentPage) {
-    this.setState({ currentpage: currentPage, focused: false });
-  }
-
-  handleDoorClick() {
-    this.setState({ focused: true });
-  }
-
   render() {
-    const { currentPage, focused } = this.state;
+    console.log("App render start", this.props);
+
+    const { media, focused } = this.props;
 
     return (
       <div>
         <Media query="(max-width: 750px)">
           {(matches) => {
-            const mediaQuery = matches ? 'small' : 'large';
             const content = (
-              <Content mediaQuery={mediaQuery} currentPage={currentPage} focused={focused}
-                handlePageChange={this.handlePageChange.bind(this)}
-                handleDoorClick={this.handleDoorClick.bind(this)} />
-            )
+              <Content />
+            );
 
             if (matches) {
               return (
@@ -59,32 +50,27 @@ export default class App extends Component {
                     </ImageFiller>
                   </div>
                 </div>
-              )
+              );
             }
 
-            const leftClass = focused ? "leftSide focused" : "leftSide"
-            const rightClass = focused ? "rightSide focused" : "rightSide"
+            const leftClass = focused ? 'leftSide focused' : 'leftSide';
+            const rightClass = focused ? 'rightSide focused' : 'rightSide';
 
-            return (
-              <div className="App" style={wrapperStyle}>
-                <Logo align='left' vertical={focused ? true : false}/>
-                <div style={flexStyle}>
-                  <div className={leftClass} style={halfScreenStyle}>
-                    <ImageFiller imageName='about-cover'>
-                      <Nav mediaQuery='large' currentPage={currentPage} focused={focused}
-                        handlePageChange={this.handlePageChange} />
-                    </ImageFiller>
-                  </div>
-                  <div className={rightClass} style={halfScreenStyle}>
-                    <ImageFiller imageName="grey-linen" colorName="warmBlue">
-                      <Content mediaQuery={mediaQuery} currentPage={currentPage} focused={focused}
-                        handlePageChange={this.handlePageChange.bind(this)}
-                        handleDoorClick={this.handleDoorClick.bind(this)} />
-                    </ImageFiller>
-                  </div>
+            return <div className="App" style={wrapperStyle}>
+              <Logo align="left" vertical={focused ? true : false} />
+              <div style={flexStyle}>
+                <div className={leftClass} style={halfScreenStyle}>
+                  <ImageFiller imageName="about-cover">
+                    <Nav />
+                  </ImageFiller>
+                </div>
+                <div className={rightClass} style={halfScreenStyle}>
+                  <ImageFiller imageName="grey-linen" colorName="warmBlue">
+                    <Content />
+                  </ImageFiller>
                 </div>
               </div>
-            )
+            </div>;
           }}
         </Media>
       </div>
@@ -92,14 +78,10 @@ export default class App extends Component {
   }
 }
 
-App.childContextTypes = {
-  colors: PropTypes.object,
-}
-
 const wrapperStyle = {
   weight: '100vw',
-  height: '100vh',
-}
+  height: '100vh'
+};
 
 const flexStyle = {
   position: 'relative',
@@ -108,8 +90,8 @@ const flexStyle = {
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
-  alignItems: 'center',
-}
+  alignItems: 'center'
+};
 
 const halfScreenStyle = {
   position: 'relative',
@@ -117,5 +99,16 @@ const halfScreenStyle = {
   height: '100vh',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
-}
+  justifyContent: 'center'
+};
+
+App.childContextTypes = {
+  colors: PropTypes.object,
+};
+
+const mapStateToProps = state => ({
+  focused: state.focused,
+  media: state.media
+});
+
+export default connect(mapStateToProps)(App);
