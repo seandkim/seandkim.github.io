@@ -24,10 +24,11 @@ const doorStyle = {
 
 const turnWhite = {
   filter: 'brightness(0) invert(100%)',
-}
+};
 
 class Door extends Component {
   render() {
+    const { media, onClick } = this.props;
     let imageName;
     switch (this.props.currentPageName) {
     case 'about me':
@@ -44,10 +45,13 @@ class Door extends Component {
       break;
     }
 
-    const style = { ...doorStyle, backgroundImage: `url(${imageName})` };
+    let style = { ...doorStyle, backgroundImage: `url(${imageName})` };
+    if (media === 'small') {
+      style = { ...style, ...turnWhite };
+    }
 
     return (
-      <div className="Door" style={doorWrapperStyle} onClick={this.props.onClick}>
+      <div className="Door" style={doorWrapperStyle} onClick={onClick}>
         <div style={style} />
       </div>
     );
@@ -55,8 +59,9 @@ class Door extends Component {
 }
 
 Door.propTypes = {
-  borderColor: PropTypes.string.isRequired,
   currentPageName: PropTypes.string.isRequired,
+  media: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

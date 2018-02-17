@@ -5,6 +5,7 @@ import AboutCover from '../images/cover/about.png';
 import ProjectsCover from '../images/cover/projects.png';
 import BigFishCover from '../images/cover/bigfish.png';
 import GreyLinen from '../images/texture/grey-linen.png';
+import ShallowWater from '../images/texture/shallow-water.png';
 
 const wrapperStyle = {
   display: 'flex',
@@ -50,6 +51,9 @@ export default class ImageFiller extends Component {
       case 'grey-linen':
         image = GreyLinen;
         break;
+      case 'shallow-water':
+        image = ShallowWater;
+        break;
       default:
         console.error('Image name not found:', this.props.imageName);
       }
@@ -65,7 +69,7 @@ export default class ImageFiller extends Component {
       if (this.context.colors[this.props.colorName] != null) {
         colorStyle = {
           ...absStyle,
-          backgroundColor: this.context.colors[this.props.colorName],
+          backgroundColor: this.context.colors[this.props.colorName] || this.props.colorName,
         };
       }
     }

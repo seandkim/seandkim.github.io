@@ -4,8 +4,10 @@ const initialState = {
   media: 'small',
 };
 
+const pageNames = ['about me', 'projects', 'big fish'];
+
 const pageReducer = (state = initialState, action) => {
-  console.log('pageReducer start with action=', action);
+  // console.log('pageReducer start with action=', action);
 
   switch (action.type) {
   case 'CHANGE_MEDIA':
@@ -18,7 +20,7 @@ const pageReducer = (state = initialState, action) => {
     console.error('invalid action');
     break;
   case 'CHANGE_PAGE':
-    if (['about me', 'projects', 'big fish'].indexOf(action.pageName) !== -1) {
+    if (pageNames.indexOf(action.pageName) !== -1) {
       return {
         ...state,
         currentPageName: action.pageName,
@@ -26,6 +28,16 @@ const pageReducer = (state = initialState, action) => {
       };
     }
     console.error('invalid action');
+    break;
+  case 'STEP_TO_PAGE':
+    if (typeof (action.step) === 'number') {
+      const currIndex = pageNames.indexOf(this.state.currentPageName);
+      return {
+        ...state,
+        currentPageName: pageNames[(currIndex + action.step) % pageNames.length],
+      };
+    }
+    console.error('Step is not a number');
     break;
   case 'CHANGE_FOCUS':
     if ([true, false].indexOf(action.focused) !== -1) {

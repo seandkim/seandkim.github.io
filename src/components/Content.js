@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 
 import Door from './Door';
 
-// import { changeFocus } from '../actions';
-
 const wrapperStyle = {
   position: 'relative',
 };
@@ -27,10 +25,30 @@ const doorNameStyle = {
 
 class Content extends Component {
   render() {
-    const { currentPageName } = this.props;
+    const { currentPageName, focused } = this.props;
 
-    const textColor = this.props.media === 'small' ? 'white' : this.context.colors.darkGray;
+    let textColor;
+    if (this.props.media === 'small') {
+      textColor = 'white';
+    } else {
+      switch (currentPageName) {
+      case 'about me':
+        textColor = this.context.colors.darkGray;
+        break;
+      case 'projects':
+        textColor = this.context.colors.darkGreen;
+        break;
+      case 'big fish':
+      default:
+        textColor = 'white';
+      }
+    }
+
     const doorNameStyle1 = { ...doorNameStyle, color: textColor };
+
+    if (focused) {
+      return <div>this is a content</div>;
+    }
     return (
       <div className="Content" style={wrapperStyle}>
         <div style={doorWrapperStyle}>
