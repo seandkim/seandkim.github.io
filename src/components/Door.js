@@ -9,8 +9,8 @@ import ProjectsDoor from '../images/door/projects_door.png';
 import BigFishDoor from '../images/door/bigfish_door.png';
 
 const doorWrapperStyle = {
-  width: '200px',
-  height: '400px',
+  width: '20vw',
+  height: '40vh',
 };
 
 const doorStyle = {

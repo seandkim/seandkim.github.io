@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import ReactTouchEvents from "react-touch-events";
 import { connect } from 'react-redux';
 import './styles/App.css';
 
@@ -8,7 +9,7 @@ import ImageFiller from './components/ImageFiller';
 import Logo from './components/Logo';
 import Nav from './components/Nav';
 
-import { changeMedia, changeFocus } from './actions';
+import { changeMedia, changeFocus, changePage } from './actions';
 
 const wrapperStyle = {
   weight: '100vw',
@@ -38,12 +39,12 @@ class App extends Component {
   getChildContext() {
     return {
       colors: {
-        darkGray: "#4A4A4A",
-        darkGreen: "#10332C",
-        lightBlue: "rgba(35, 127, 177, 0.6)",
-        lightBrown: "rgba(69, 55, 7, 0.6)",
-        warmBlue: "rgba(77, 97, 103, 0.66)"
-      }
+        darkGray: '#4A4A4A',
+        darkGreen: '#10332C',
+        lightBlue: 'rgba(35, 127, 177, 0.6)',
+        lightBrown: 'rgba(69, 55, 7, 0.6)',
+        warmBlue: 'rgba(77, 97, 103, 0.66)',
+      },
     };
   }
 
@@ -51,26 +52,25 @@ class App extends Component {
    * Calculate & Update state of new dimensions
    */
   updateDimensions() {
-    if (window.innerWidth < 750) {
-      if (this.props.media === "large") {
-        this.props.changeMedia("small");
+    const ratio = window.innerWidth / window.innerHeight;
+    if (ratio < 0.8) {
+      if (this.props.media === 'large') {
+        this.props.changeMedia('small');
       }
     } else {
-      if (this.props.media === "small") {
-        this.props.changeMedia("large");
+      if (this.props.media === 'small') {
+        this.props.changeMedia('large');
       }
     }
   }
 
   componentDidMount() {
     this.updateDimensions();
-    window.addEventListener("resize", this.updateDimensions.bind(this));
-    window.addEventListener("scroll", function() {console.log('hello')});
+    window.addEventListener('resize', this.updateDimensions.bind(this));
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions.bind(this));
-    window.removeEventListener("scroll", function() {console.log('hello')});
+    window.removeEventListener('resize', this.updateDimensions.bind(this));
   }
 
   unfocus() {
@@ -79,51 +79,53 @@ class App extends Component {
     }
   }
 
+  handleSwipe(event) {
+    this.props.changePage('projects');
+  }
+
   render() {
-    console.log("App render start", this.props);
+    console.log('App render start', this.props);
 
     const { currentPageName, focused, media } = this.props;
 
-    if (media === "small") {
+    if (media === 'small') {
       return (
-        <div style={wrapperStyle}>
-          <Logo align="center" vertical={false} />
-          <div style={flexStyle}>
-            <ImageFiller imageName={currentPageName}>
-              <Content />
-            </ImageFiller>
+        <ReactTouchEvents onSwipe={this.handleSwipe.bind(this)}>
+          <div style={wrapperStyle} >
+            <Logo align="center" vertical={false} />
+            <div style={flexStyle}>
+              <ImageFiller imageName={currentPageName}>
+                <Content />
+              </ImageFiller>
+            </div>
           </div>
-        </div>
+        </ReactTouchEvents>
       );
     }
 
-    const leftClass = focused ? "leftSide focused" : "leftSide";
-    const rightClass = focused ? "rightSide focused" : "rightSide";
+    const leftClass = focused ? 'leftSide focused' : 'leftSide';
+    const rightClass = focused ? 'rightSide focused' : 'rightSide';
 
     let rightColor, rightTexture;
     switch (currentPageName) {
-      case "about me":
-        rightTexture = "grey-linen";
-        rightColor = "warmBlue";
-        break;
-      case "projects":
-        rightTexture = "grey-linen";
-        rightColor = "lightBrown";
-        break;
-      default:
-        rightTexture = "shallow-water";
-        rightColor = "lightBlue";
+    case 'about me':
+      rightTexture = 'grey-linen';
+      rightColor = 'warmBlue';
+      break;
+    case 'projects':
+      rightTexture = 'grey-linen';
+      rightColor = 'lightBrown';
+      break;
+    default:
+      rightTexture = 'shallow-water';
+      rightColor = 'lightBlue';
     }
 
     return (
       <div className="App" style={wrapperStyle}>
         <Logo align="left" vertical={!!focused} />
         <div style={flexStyle}>
-          <div
-            className={leftClass}
-            style={halfScreenStyle}
-            onClick={this.unfocus.bind(this)}
-          >
+          <div className={leftClass} style={halfScreenStyle} onClick={this.unfocus.bind(this)}>
             <ImageFiller imageName={currentPageName}>
               <Nav />
             </ImageFiller>
@@ -145,6 +147,7 @@ App.propTypes = {
   media: PropTypes.string.isRequired,
   changeMedia: PropTypes.func.isRequired,
   changeFocus: PropTypes.func.isRequired,
+  changePage: PropTypes.func.isRequired,
 };
 
 App.childContextTypes = {
@@ -158,7 +161,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  changeMedia, changeFocus,
+  changeMedia, changeFocus, changePage,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

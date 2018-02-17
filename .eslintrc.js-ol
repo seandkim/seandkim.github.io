@@ -9,6 +9,7 @@ module.exports = {
     indent: ["warn", 2],
     "jsx-a11y/click-events-have-key-events": "off",
     "one-var": "off",
-    "one-var-declaration-per-line": "off"
+    "one-var-declaration-per-line": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
   }
 };

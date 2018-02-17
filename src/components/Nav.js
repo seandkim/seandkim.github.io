@@ -27,6 +27,12 @@ class Nav extends Component {
   constructor(props) {
     super(props);
     this.pages = ['about me', 'projects', 'big fish']; // change to context
+    // this.pageJustChanged = true; TODO
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // if page changed, do not animate the nav tabs
+    this.focusJustChanged = this.props.focused !== nextProps.focused;
   }
 
   render() {
@@ -36,6 +42,10 @@ class Nav extends Component {
       const thisPageName = this.pages[i];
       let menuTabClasses = focused ? 'menu-tab focused' : 'menu-tab';
       const menuTextClasses = focused ? 'menu-text focused' : 'menu-text';
+      if (this.focusJustChanged) {
+        menuTabClasses += ' focusedJustChanged';
+      }
+
       const thisTabStyle = { ...menuTabStyle };
       if (thisPageName === currentPageName) {
         menuTabClasses += ' selected';

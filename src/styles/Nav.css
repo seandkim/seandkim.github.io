@@ -1,7 +1,10 @@
 .menu-tab.selected:not(.focused) {
+  border-bottom: 1px white solid;
+}
+
+.menu-tab.selected:not(.focused).focusedJustChanged {
   animation: border-selected-rev 500ms ease-in-out;
   animation-fill-mode: forwards;
-  border-bottom: 1px white solid;
 }
 
 .menu-tab.selected.focused {
@@ -9,7 +12,7 @@
   animation-fill-mode: forwards;
 }
 
-.menu-tab:not(.selected):not(.focused) {
+.menu-tab:not(.selected):not(.focused).focusedJustChanged {
   animation: border-not-selected-rev 500ms ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -20,7 +23,12 @@
 }
 
 @keyframes border-selected {
-  to {
+  30% {
+    transform: rotate(-10deg);
+    border-left: 0px white solid;
+    width: 100%;
+  }
+  100% {
     transform: rotate(360deg);
     border-left: 2px white solid;
     width: 0px;
@@ -32,6 +40,7 @@
     border-left-width: 2px;
     border-bottom-width: 0px;
     width: 0%;
+    transform: rotate(-180deg);
   }
   30% {
     width: 0%;
@@ -45,7 +54,12 @@
 }
 
 @keyframes border-not-selected {
-  to {
+  30% {
+    transform: rotate(-10deg);
+    border-left: 0px white solid;
+    width: 100%;
+  }
+  100% {
     transform: rotate(360deg);
     border-left: 2px rgba(255, 255, 255, 0.3) solid;
     width: 0px;
@@ -53,7 +67,10 @@
 }
 
 @keyframes border-not-selected-rev {
-  from {border-left-width: 2px;}
+  from {
+    border-left-width: 2px;
+    transform: rotate(-180deg);
+  }
   to {border-left-width: 0px;}
 }
 
@@ -68,7 +85,7 @@
 }
 
 @keyframes squash {
-  0% {transform: scaleX(1);}
+  20% {transform: scaleX(1.2);}
   100% {transform: scaleX(0);}
 }
 

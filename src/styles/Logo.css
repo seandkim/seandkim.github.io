@@ -1,20 +1,20 @@
-.Logo:not(vertical) {
+.Logo:not(vertical).focusJustChanged {
     transform-origin: top left;
     animation: spin-rev 500ms ease-in-out;
     animation-fill-mode: forwards;
 }
 
-.Logo.vertical {
+.Logo.vertical.focusJustChanged {
     transform-origin: top left;
-    animation: spin 500ms ease-in-out;
+    animation: spin 800ms cubic-bezier(0.67, -0.42, 0.58, 1);
     animation-fill-mode: forwards;
 }
 
 @keyframes spin {
-    from {
+    0% {
         transform: rotate(0deg);
     }
-    to {
+    100% {
         transform: rotate(90deg);
     }
 }

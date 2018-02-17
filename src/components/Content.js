@@ -18,7 +18,7 @@ const doorWrapperStyle = {
 
 const doorNameStyle = {
   fontFamily: 'Satisfy',
-  fontSize: '40px',
+  fontSize: '5vh',
   textTransform: 'capitalize',
   color: null, // darkGray, specified in render
 };
@@ -53,7 +53,7 @@ class Content extends Component {
       <div className="Content" style={wrapperStyle}>
         <div style={doorWrapperStyle}>
           <div style={doorNameStyle1}>{currentPageName}</div>
-          <Door type="about me" borderColor={textColor} />
+          <Door type="about me" />
           <div style={doorNameStyle1}>Click to Enter</div>
         </div>
       </div>
