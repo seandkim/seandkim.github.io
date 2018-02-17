@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import AboutCover from '../images/cover/about.png';
+import ProjectsCover from '../images/cover/projects.png';
+import BigFishCover from '../images/cover/bigfish.png';
 import GreyLinen from '../images/texture/grey-linen.png';
 
 const wrapperStyle = {
@@ -33,9 +35,17 @@ export default class ImageFiller extends Component {
       const customStyle = {};
 
       switch (this.props.imageName) {
-      case 'about-cover':
+      case 'about me':
         image = AboutCover;
         customStyle.backgroundPositionX = '-130px'; // TODO dependent on width?
+        break;
+      case 'projects':
+        image = ProjectsCover;
+        customStyle.backgroundPositionX = '-100px';
+        break;
+      case 'big fish':
+        image = BigFishCover;
+        customStyle.backgroundPositionX = '-50px';
         break;
       case 'grey-linen':
         image = GreyLinen;
@@ -73,7 +83,7 @@ export default class ImageFiller extends Component {
 ImageFiller.propTypes = {
   imageName: PropTypes.string,
   colorName: PropTypes.string,
-}
+};
 
 ImageFiller.contextTypes = {
   colors: PropTypes.object,

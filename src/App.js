@@ -68,17 +68,23 @@ class App extends Component {
     window.removeEventListener('resize', this.updateDimensions.bind(this));
   }
 
+  unfocus() {
+    if (this.props.focused) {
+      this.props.changeFocus(false);
+    }
+  }
+
   render() {
     console.log('App render start', this.props);
 
-    const { media, focused } = this.props;
+    const { currentPageName, focused, media } = this.props;
 
     if (media === 'small') {
       return (
         <div style={wrapperStyle}>
           <Logo align="center" vertical={false} />
           <div style={flexStyle}>
-            <ImageFiller imageName="about-cover">
+            <ImageFiller imageName={currentPageName}>
               <Content />
             </ImageFiller>
           </div>
@@ -93,8 +99,8 @@ class App extends Component {
       <div className="App" style={wrapperStyle}>
         <Logo align="left" vertical={!!focused} />
         <div style={flexStyle}>
-          <div className={leftClass} style={halfScreenStyle} onClick={() => this.props.changeFocus(false)}>
-            <ImageFiller imageName="about-cover">
+          <div className={leftClass} style={halfScreenStyle} onClick={this.unfocus.bind(this)}>
+            <ImageFiller imageName={currentPageName}>
               <Nav />
             </ImageFiller>
           </div>
@@ -110,6 +116,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+  currentPageName: PropTypes.string.isRequired,
   focused: PropTypes.bool.isRequired,
   media: PropTypes.string.isRequired,
   changeMedia: PropTypes.func.isRequired,
@@ -121,6 +128,7 @@ App.childContextTypes = {
 };
 
 const mapStateToProps = state => ({
+  currentPageName: state.currentPageName,
   focused: state.focused,
   media: state.media,
 });

@@ -1,5 +1,29 @@
-.Logo.vertical {
-    transform: rotate(90deg);
+.Logo:not(vertical) {
     transform-origin: top left;
-    transition: transform 300ms ease-in-out;
+    animation: spin-rev 500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.Logo.vertical {
+    transform-origin: top left;
+    animation: spin 500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes spin-rev {
+    from {
+        transform: rotate(90deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
 }

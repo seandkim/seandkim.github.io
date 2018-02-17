@@ -18,10 +18,10 @@ const pageReducer = (state = initialState, action) => {
     console.error('invalid action');
     break;
   case 'CHANGE_PAGE':
-    if (['about_me', 'projects', 'big_fish'].indexOf(action.pageName) !== -1) {
+    if (['about me', 'projects', 'big fish'].indexOf(action.pageName) !== -1) {
       return {
         ...state,
-        pageName: action.pageName,
+        currentPageName: action.pageName,
         focused: false,
       };
     }

@@ -1,0 +1,78 @@
+.menu-tab.selected:not(.focused) {
+  animation: border-selected-rev 500ms ease-in-out;
+  animation-fill-mode: forwards;
+  border-bottom: 1px white solid;
+}
+
+.menu-tab.selected.focused {
+  animation: border-selected 500ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.menu-tab:not(.selected):not(.focused) {
+  animation: border-not-selected-rev 500ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.menu-tab:not(.selected).focused {
+  animation: border-not-selected 500ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes border-selected {
+  to {
+    transform: rotate(360deg);
+    border-left: 2px white solid;
+    width: 0px;
+  }
+}
+
+@keyframes border-selected-rev {
+  from {
+    border-left-width: 2px;
+    border-bottom-width: 0px;
+    width: 0%;
+  }
+  30% {
+    width: 0%;
+  }
+  to {
+    border-left-width: 0px;
+    border-bottom: white solid;
+    border-bottom-width: 1px;
+    width: 90%;
+  }
+}
+
+@keyframes border-not-selected {
+  to {
+    transform: rotate(360deg);
+    border-left: 2px rgba(255, 255, 255, 0.3) solid;
+    width: 0px;
+  }
+}
+
+@keyframes border-not-selected-rev {
+  from {border-left-width: 2px;}
+  to {border-left-width: 0px;}
+}
+
+.menu-text:not(.focused) {
+  animation: squash-rev 500ms ease-in-out;
+  /* animation-fill-mode: forwards; */
+}
+
+.menu-text.focused {
+  animation: squash 500ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes squash {
+  0% {transform: scaleX(1);}
+  100% {transform: scaleX(0);}
+}
+
+@keyframes squash-rev {
+  from {transform: scaleX(0);}
+  to {transform: scaleX(1);}
+}

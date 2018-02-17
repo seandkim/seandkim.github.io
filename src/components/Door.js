@@ -4,45 +4,51 @@ import { connect } from 'react-redux';
 
 import { changeFocus } from './../actions';
 
-const outerDoor = {
-  position: 'relative',
-  width: '22vh',
-  height: '40vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+import AboutDoor from '../images/door/aboutme_door.png';
+import ProjectsDoor from '../images/door/projects_door.png';
+import BigFishDoor from '../images/door/bigfish_door.png';
+
+const doorWrapperStyle = {
+  width: '200px',
+  height: '400px',
 };
 
-const innerDoor = {
-  width: '95%',
-  height: '98%',
+const doorStyle = {
+  backgroundImage: `url(${AboutDoor})`,
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'contain',
+  width: '100%',
+  height: '100%',
 };
 
-const doorKnob = {
-  position: 'absolute',
-  right: '3px',
-  width: '1vh',
-  height: '1vh',
-  borderRadius: '2vh',
-};
+const turnWhite = {
+  filter: 'brightness(0) invert(100%)',
+}
 
 class Door extends Component {
-  constructor(props) {
-    super(props);
-
-    this.borderStyle = {
-      borderColor: this.props.borderColor,
-      borderWidth: '3px',
-      borderStyle: 'solid',
-      borderRadius: '0.5vh',
-    };
-  }
-
   render() {
+    let imageName;
+    switch (this.props.currentPageName) {
+    case 'about me':
+      imageName = AboutDoor;
+      break;
+    case 'projects':
+      imageName = ProjectsDoor;
+      break;
+    case 'big fish':
+      imageName = BigFishDoor;
+      break;
+    default:
+      imageName = AboutDoor;
+      break;
+    }
+
+    const style = { ...doorStyle, backgroundImage: `url(${imageName})` };
+
     return (
-      <div className="Door" style={{ ...this.borderStyle, ...outerDoor }} onClick={this.props.onClick}>
-        <div style={{ ...this.borderStyle, ...innerDoor }} />
-        <div style={{ ...this.borderStyle, ...doorKnob, backgroundColor: this.props.borderColor }} />
+      <div className="Door" style={doorWrapperStyle} onClick={this.props.onClick}>
+        <div style={style} />
       </div>
     );
   }
@@ -50,10 +56,11 @@ class Door extends Component {
 
 Door.propTypes = {
   borderColor: PropTypes.string.isRequired,
+  currentPageName: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  focused: state.focused,
+  currentPageName: state.currentPageName,
   media: state.media,
 });
 

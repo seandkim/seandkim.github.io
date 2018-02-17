@@ -25,7 +25,7 @@ class Logo extends Component {
       break;
     case 'left':
     default:
-      customStyle = { left: '50px' };
+      customStyle = { left: '6vw' };
       break;
     }
 

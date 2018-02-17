@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import '../styles/Nav.css';
 
 import { changePage } from '../actions';
 
@@ -13,9 +14,13 @@ const menuWrapperStyle = {
 };
 
 const menuTabStyle = {
+  margin: '1vh',
+};
+
+const menuTextStyle = {
   fontFamily: 'Roboto',
   fontSize: '25px',
-  margin: '1vh',
+  whiteSpace: 'nowrap',
 };
 
 class Nav extends Component {
@@ -25,19 +30,32 @@ class Nav extends Component {
   }
 
   render() {
-    const { currentPageName } = this.props;
+    const { currentPageName, focused } = this.props;
     const tabs = [];
     for (let i = 0; i < this.pages.length; i += 1) {
-      const thisPage = this.pages[i];
+      const thisPageName = this.pages[i];
+      let menuTabClasses = focused ? 'menu-tab focused' : 'menu-tab';
+      const menuTextClasses = focused ? 'menu-text focused' : 'menu-text';
       const thisTabStyle = { ...menuTabStyle };
-      if (i === this.pages.indexOf(currentPageName)) {
-        thisTabStyle.textDecoration = 'underline';
+      if (thisPageName === currentPageName) {
+        menuTabClasses += ' selected';
       }
-      tabs.push(<div style={thisTabStyle} key={i}>{thisPage}</div>);
+
+      const elem = (
+        <div key={i} style={thisTabStyle} className={menuTabClasses}>
+          <div style={menuTextStyle} className={menuTextClasses}
+            onClick={() => this.props.changePage(thisPageName)}>
+            {thisPageName}
+          </div>
+        </div>
+      );
+
+      tabs.push(elem);
     }
 
+    const navClasses = focused ? 'Nav focused' : 'tab';
     return (
-      <div className="Nav" style={menuWrapperStyle}>
+      <div className={navClasses} style={menuWrapperStyle}>
         { tabs }
       </div>
     );
@@ -57,7 +75,7 @@ const mapDispatchToProps = {
 Nav.propTypes = {
   currentPageName: PropTypes.string.isRequired,
   focused: PropTypes.bool.isRequired,
-  media: PropTypes.string.isRequired,
+  changePage: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);
