@@ -1,8 +1,11 @@
 {
-  "main.css": "static/css/main.47356259.css",
-  "main.css.map": "static/css/main.47356259.css.map",
-  "main.js": "static/js/main.f5dccc31.js",
-  "main.js.map": "static/js/main.f5dccc31.js.map",
+  "main.css": "static/css/main.a6c92504.css",
+  "main.css.map": "static/css/main.a6c92504.css.map",
+  "main.js": "static/js/main.a0570642.js",
+  "main.js.map": "static/js/main.a0570642.js.map",
   "static/media/about.png": "static/media/about.43475bd1.png",
-  "static/media/grey-linen.png": "static/media/grey-linen.7cb02284.png"
+  "static/media/bigfish.png": "static/media/bigfish.9fd4cabf.png",
+  "static/media/grey-linen.png": "static/media/grey-linen.7cb02284.png",
+  "static/media/projects.png": "static/media/projects.b29c66da.png",
+  "static/media/shallow-water.png": "static/media/shallow-water.524f7dd8.png"
 }
