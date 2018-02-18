@@ -15,6 +15,7 @@ const pageReducer = (state = initialState, action) => {
       return {
         ...state,
         media: action.media,
+        focused: false,
       };
     }
     console.error('invalid action');
@@ -35,6 +36,7 @@ const pageReducer = (state = initialState, action) => {
       return {
         ...state,
         currentPageName: pageNames[(currIndex + action.step) % pageNames.length],
+        focused: false,
       };
     }
     console.error('Step is not a number');
