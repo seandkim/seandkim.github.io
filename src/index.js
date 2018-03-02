@@ -7,6 +7,7 @@ import App from './App';
 import reducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 import './styles/index.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 const store = createStore(reducer);
 

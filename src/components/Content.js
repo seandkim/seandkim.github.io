@@ -7,6 +7,7 @@ import Door from './Door';
 
 const wrapperStyle = {
   // position: 'relative',
+  overflowY: 'scroll',
 };
 
 const doorWrapperStyle = {
@@ -18,7 +19,8 @@ const doorWrapperStyle = {
 };
 
 const doorNameStyle = {
-  fontFamily: 'Satisfy',
+  fontFamily: 'Dosis',
+  fontWeight: '400',
   fontSize: '5vh',
   textTransform: 'capitalize',
   color: null, // darkGray, specified in render
@@ -79,11 +81,12 @@ class Content extends Component {
       ...doorNameStyle,
       color: textColor,
       margin: '40px 10px',
-      alignSelf: 'flex-start',
+      fontSize: '70px',
+      fontWeight: '100',
     };
     const contentStyle = {
       color: textColor,
-      fontFamily: 'Raleway',
+      fontFamily: 'Nunito',
       lineHeight: '1.8',
       fontSize: '20px',
       textAlign: 'left',
@@ -92,19 +95,32 @@ class Content extends Component {
     switch (currentPageName) {
     case 'about me':
       return (
-        <div className="Content" style={wrapperStyle1}>
-          <div style={headerStyle1}>{currentPageName}</div>
-          <div style={contentStyle}>
+        <div className="Content entering" style={wrapperStyle1}>
+          <div className="header" style={headerStyle1}>
             Hello, I’m Sean <a href="http://onepiece.wikia.com/wiki/Will_of_the_D.">D</a> Kim.
-            <br /> <br />
-            I study Computer Science in Carnegie Mellon University. Currently I am on a gap semester,
-            interning at <a href="https://www.skelterlabs.com/"> Skelter Labs</a> as a software engineer.
-            <br />
-            I will be in New York this upcoming summer,
-            interning at <a href="https://www.squarespace.com/">Squarespace</a>.
+          </div>
+          <div className="body" style={contentStyle}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>
+                <img src="https://i.imgur.com/mEPWCqq.gif" />
+              </div>
+              Except it is not :)
+            </div>
+            <div style={{ textIndent: '40px' }}>
+              <p>
+                I study Computer Science in Carnegie Mellon University, expecting to graduate on
+                May 2019. Currently I am on a gap semester,
+                interning at <a href="https://www.skelterlabs.com/"> Skelter Labs</a> as a software engineer.
+                I will be in New York this upcoming summer,
+                interning at <a href="https://www.squarespace.com/">Squarespace</a> as a site reliability engineer.
+              </p>
+              <p>
+                I am looking for full time opportunity! Feel free to check out my resume and contact me.
+              </p>
+            </div>
           </div>
         </div>
-      )
+      );
     default:
       return (<div style={contentStyle}>Under Construction</div>);
     }

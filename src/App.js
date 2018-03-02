@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import ReactTouchEvents from "react-touch-events";
 import { connect } from 'react-redux';
 import './styles/App.css';
 
+import ContactInfo from './components/ContactInfo';
 import Content from './components/Content';
 import ImageFiller from './components/ImageFiller';
 import Logo from './components/Logo';
@@ -90,16 +90,14 @@ class App extends Component {
 
     if (media === 'small') {
       return (
-        <ReactTouchEvents onSwipe={this.handleSwipe.bind(this)}>
-          <div style={wrapperStyle} >
-            <Logo align="center" vertical={false} />
-            <div style={flexStyle}>
-              <ImageFiller imageName={currentPageName}>
-                <Content />
-              </ImageFiller>
-            </div>
+        <div style={wrapperStyle} >
+          <Logo align="center" vertical={false} />
+          <div style={flexStyle}>
+            <ImageFiller imageName={currentPageName}>
+              <Content />
+            </ImageFiller>
           </div>
-        </ReactTouchEvents>
+        </div>
       );
     }
 
@@ -128,6 +126,7 @@ class App extends Component {
           <div className={leftClass} style={halfScreenStyle} onClick={this.unfocus.bind(this)}>
             <ImageFiller imageName={currentPageName}>
               <Nav />
+              <ContactInfo />
             </ImageFiller>
           </div>
           <div className={rightClass} style={halfScreenStyle}>

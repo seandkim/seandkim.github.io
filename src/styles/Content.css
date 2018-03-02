@@ -1,8 +1,43 @@
 a {
   color: #385196;
+  font-weight: bold;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+.entering div.header {
+  animation: enter-down 800ms ease-in-out 0ms;
+  animation-fill-mode: forward;
+}
+
+.entering div.body {
+  animation: enter-up 1000ms ease-in-out 0ms;
+  animation-fill-mode: forward;
+}
+
+@keyframes enter-down {
+  0% {
+    transform: translateY(-1000px);
+  }
+  10% {
+    transform: translateY(-1000px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes enter-up {
+  0% {
+    transform: translateY(1000px);
+  }
+  50% {
+    transform: translateY(1000px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
