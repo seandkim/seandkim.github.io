@@ -8,7 +8,6 @@ const pageNames = ['about me', 'projects', 'big fish'];
 
 const pageReducer = (state = initialState, action) => {
   // console.log('pageReducer start with action=', action);
-
   switch (action.type) {
   case 'CHANGE_MEDIA':
     if (['small', 'large'].indexOf(action.media) !== -1) {

@@ -1,7 +1,15 @@
 a {
   color: #385196;
-  font-weight: bold;
   text-decoration: none;
+}
+
+p a {
+  font-weight: bold;
+}
+
+b {
+  color: black;
+  transform: scale(1.5);
 }
 
 a:hover {

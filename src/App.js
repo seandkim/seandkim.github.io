@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './styles/App.css';
 
 import ContactInfo from './components/ContactInfo';
-import Content from './components/Content';
+import Content from './components/Contents/Content';
 import ImageFiller from './components/ImageFiller';
 import Logo from './components/Logo';
 import Nav from './components/Nav';
@@ -84,8 +84,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('App render start', this.props);
-
     const { currentPageName, focused, media } = this.props;
 
     if (media === 'small') {

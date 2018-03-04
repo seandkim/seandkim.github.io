@@ -18,7 +18,6 @@ const logoStyle = {
 
 class Logo extends Component {
   componentWillReceiveProps(nextProps) {
-    console.log(this.props.focused, nextProps.focused);
     // if page changed, do not animate the nav tabs
     this.focusJustChanged = this.props.focused !== nextProps.focused;
   }

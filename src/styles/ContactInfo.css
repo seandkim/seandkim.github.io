@@ -1,0 +1,87 @@
+a.icon {
+  color: white;
+}
+
+.ContactInfo.focusJustChanged > div:nth-child(1) {
+  animation: bounce-up1 400ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.ContactInfo.focusJustChanged > div:nth-child(2) {
+  animation: bounce-up2 400ms ease-in-out 300ms;
+  animation-fill-mode: forwards;
+}
+
+.ContactInfo.focusJustChanged > div:nth-child(3) {
+  animation: bounce-up3 400ms ease-in-out 300ms;
+  animation-fill-mode: forwards;
+}
+
+.ContactInfo:not(.focusJustChanged) > div:nth-child(1) {
+  animation: bounce-down1 400ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.ContactInfo:not(.focusJustChanged) > div:nth-child(2) {
+  animation: bounce-down2 400ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.ContactInfo:not(.focusJustChanged)>div:nth-child(3) {
+  animation: bounce-down3 400ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes bounce-up1 {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-120px) scale(0.8);
+  }
+}
+
+@keyframes bounce-up2 {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-60px) scale(0.8);
+  }
+}
+
+@keyframes bounce-up3 {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(0px) scale(0.8);
+  }
+}
+
+@keyframes bounce-down1 {
+  0% {
+    transform: translateY(-120px) scale(0.8);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes bounce-down2 {
+  0% {
+    transform: translateY(-60px) scale(0.8);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes bounce-down3 {
+  0% {
+    transform: translateY(0px) scale(0.8);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

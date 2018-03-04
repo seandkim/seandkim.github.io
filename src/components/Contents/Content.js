@@ -1,14 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../styles/Content.css';
+import '../../styles/Content.css';
 
-import Door from './Door';
-
-const wrapperStyle = {
-  // position: 'relative',
-  overflowY: 'scroll',
-};
+import AboutCover from './AboutContent';
+import Door from './../Door';
 
 const doorWrapperStyle = {
   height: '60vh',
@@ -59,7 +55,7 @@ class Content extends Component {
     const doorNameStyle1 = { ...doorNameStyle, color: textColor };
 
     return (
-      <div className="Content" style={wrapperStyle}>
+      <div className="Content">
         <div style={doorWrapperStyle}>
           <div style={doorNameStyle1}>{currentPageName}</div>
           <Door type="about me" />
@@ -71,19 +67,6 @@ class Content extends Component {
 
   renderContent(textColor) {
     const { currentPageName } = this.props;
-    const wrapperStyle1 = {
-      display: 'flex',
-      flexDirection: 'column',
-      padding: '10vw',
-      overflowY: 'scroll',
-    };
-    const headerStyle1 = {
-      ...doorNameStyle,
-      color: textColor,
-      margin: '40px 10px',
-      fontSize: '70px',
-      fontWeight: '100',
-    };
     const contentStyle = {
       color: textColor,
       fontFamily: 'Nunito',
@@ -94,35 +77,10 @@ class Content extends Component {
 
     switch (currentPageName) {
     case 'about me':
-      return (
-        <div className="Content entering" style={wrapperStyle1}>
-          <div className="header" style={headerStyle1}>
-            Hello, I’m Sean <a href="http://onepiece.wikia.com/wiki/Will_of_the_D.">D</a> Kim.
-          </div>
-          <div className="body" style={contentStyle}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ display: 'flex', justifyContent: 'center', margin: '20px' }}>
-                <img src="https://i.imgur.com/mEPWCqq.gif" />
-              </div>
-              Except it is not :)
-            </div>
-            <div style={{ textIndent: '40px' }}>
-              <p>
-                I study Computer Science in Carnegie Mellon University, expecting to graduate on
-                May 2019. Currently I am on a gap semester,
-                interning at <a href="https://www.skelterlabs.com/"> Skelter Labs</a> as a software engineer.
-                I will be in New York this upcoming summer,
-                interning at <a href="https://www.squarespace.com/">Squarespace</a> as a site reliability engineer.
-              </p>
-              <p>
-                I am looking for full time opportunity! Feel free to check out my resume and contact me.
-              </p>
-            </div>
-          </div>
-        </div>
-      );
+      return <AboutCover textColor={this.context.colors.darkGray}
+        headerFontFamily={doorNameStyle.fontFamily}/>;
     default:
-      return (<div style={contentStyle}>Under Construction</div>);
+      return (<div style={contentStyle}>Sorry, this page is under Construction :'(</div>);
     }
   }
 }
