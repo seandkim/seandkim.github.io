@@ -58,7 +58,7 @@ class Content extends Component {
       <div className="Content">
         <div style={doorWrapperStyle}>
           <div style={doorNameStyle1}>{currentPageName}</div>
-          <Door type="about me" />
+          <Door type="about me" color={textColor} />
           <div style={doorNameStyle1}>Click to Enter</div>
         </div>
       </div>

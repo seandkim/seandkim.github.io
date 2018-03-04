@@ -22,7 +22,6 @@ const logoImgStyle = {
   width: '200px',
   height: 'auto',
   verticalAlign: 'text-bottom',
-  padding: '0px 10px',
 }
 
 class AboutContent extends Component {
@@ -71,28 +70,32 @@ class AboutContent extends Component {
             <div>
               I study <b>Computer Science</b> in <b>Carnegie Mellon University</b>, expecting to graduate on
               May 2019. Currently I am on a gap semester,
-              interning at
-              <a href="https://www.skelterlabs.com/" target="_blank">
+              interning at <a href="https://www.skelterlabs.com/" target="_blank">
                 <img style={logoImgStyle} src={SkelterLabsLogo} />
-              </a>
-              as a software engineer.
+              </a> as a software engineer.
               I will be in New York this upcoming summer,
-              interning at
-              <a href="https://www.squarespace.com/" target="_blank">
+              interning at <a href="https://www.squarespace.com/" target="_blank">
                 <img style={logoImgStyle} src={SquareSpaceLogo} />
-              </a>
-              as a site reliability engineer.
+              </a> as a site reliability engineer.
             </div>
           </div>
           <div style={blockStyle}>
             <div>
               I am looking for <b>full time opportunity</b> for fall 2019
               in <b>Web Application</b> (backend or full-Stack) and <b>Distributed Systems</b>.
+              Feel free to <b>
+                <a href='mailto:sdk1@andrew.cmu.edu' target="_blank">contact me</a>
+                {/* <a onClick={this.contactMeClicked}>contact me</a> */}
+              </b> if interested!
             </div>
           </div>
         </div>
       </div>
     );
+  }
+
+  contactMeClicked() {
+    console.log('contact me clicked');
   }
 }
 

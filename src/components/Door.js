@@ -27,10 +27,23 @@ const turnWhite = {
 };
 
 class Door extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      notDone: false,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentPageName !== nextProps.currentPageName) {
+      this.setState({ notDone: false });
+    }
+  }
+
   render() {
-    const { media, onClick } = this.props;
+    const { currentPageName, media, color } = this.props;
     let imageName;
-    switch (this.props.currentPageName) {
+    switch (currentPageName) {
     case 'about me':
       imageName = AboutDoor;
       break;
@@ -45,23 +58,46 @@ class Door extends Component {
       break;
     }
 
-    let style = { ...doorStyle, backgroundImage: `url(${imageName})` };
+    let doorStyle1 = { ...doorStyle, backgroundImage: `url(${imageName})` };
     if (media === 'small') {
-      style = { ...style, ...turnWhite };
+      doorStyle1 = { ...doorStyle1, ...turnWhite };
     }
 
     return (
-      <div className="Door" style={doorWrapperStyle} onClick={onClick}>
-        <div style={style} />
+      <div>
+        <div className="Door" style={doorWrapperStyle} onClick={this.onClick.bind(this, currentPageName)}>
+          <div style={doorStyle1} />
+        </div>
+        {this.state.notDone &&
+          <div style={{
+            position: 'absolute', left: 0, right: 0, top: '40%',
+            margin: 'auto', fontSize: '60px', color: this.props.color,
+            transform: 'rotate(-20deg)', fontFamily: 'Satisfy', textAlign: 'center',
+          }}>
+            Under <br /> Construction
+          </div>}
       </div>
     );
   }
+
+  onClick(currentPageName) {
+    const notDonePages = ['projects', 'big fish'];
+    if (notDonePages.indexOf(currentPageName) >= 0 || this.props.media === 'small') {
+      this.setState({ notDone: true })
+      return;
+    }
+
+    this.props.changeFocus(true)
+  }
 }
+
+
 
 Door.propTypes = {
   currentPageName: PropTypes.string.isRequired,
   media: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  changeFocus: PropTypes.func.isRequired,
+  color: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -70,7 +106,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onClick: () => changeFocus(true),
+  changeFocus,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Door);
