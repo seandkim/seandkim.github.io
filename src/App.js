@@ -44,6 +44,7 @@ class App extends Component {
         lightBlue: 'rgba(35, 127, 177, 0.6)',
         lightBrown: 'rgba(69, 55, 7, 0.6)',
         warmBlue: 'rgba(77, 97, 103, 0.66)',
+        olive: 'rgba(46, 76, 12, 0.82)',
       },
     };
   }
@@ -103,14 +104,21 @@ class App extends Component {
     const rightClass = focused ? 'rightSide focused' : 'rightSide';
 
     let rightColor, rightTexture;
+    let darkenRatio = 0;
     switch (currentPageName) {
     case 'about me':
+      rightTexture = 'grey-linen';
+      rightColor = 'olive';
+      darkenRatio = 0.33;
+      break;
+    case 'music':
       rightTexture = 'grey-linen';
       rightColor = 'warmBlue';
       break;
     case 'projects':
       rightTexture = 'grey-linen';
       rightColor = 'lightBrown';
+      darkenRatio = 0.2;
       break;
     default:
       rightTexture = 'shallow-water';
@@ -122,7 +130,7 @@ class App extends Component {
         <Logo align="left" vertical={!!focused} />
         <div style={flexStyle}>
           <div className={leftClass} style={halfScreenStyle} onClick={this.unfocus.bind(this)}>
-            <ImageFiller imageName={currentPageName}>
+            <ImageFiller imageName={currentPageName} darkenRatio={darkenRatio}>
               <Nav />
               <ContactInfo />
             </ImageFiller>

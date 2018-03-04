@@ -31,12 +31,14 @@ class Content extends Component {
       textColor = 'white';
     } else {
       switch (currentPageName) {
-      case 'about me':
+      //TODO: change to json file
+      case 'music':
         textColor = this.context.colors.darkGray;
         break;
       case 'projects':
         textColor = this.context.colors.darkGreen;
         break;
+      case 'about me':
       case 'big fish':
       default:
         textColor = 'white';

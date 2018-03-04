@@ -9,7 +9,7 @@ p a {
 
 b {
   color: black;
-  transform: scale(1.5);
+  font-size: 25px;
 }
 
 a:hover {
