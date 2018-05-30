@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 import { changeFocus } from './../actions';
 
-import AboutDoor from '../images/door/aboutme_door.png';
-import ProjectsDoor from '../images/door/projects_door.png';
-import BigFishDoor from '../images/door/bigfish_door.png';
+import AboutDoor from '../assets/door/aboutme_door.png';
+import ProjectsDoor from '../assets/door/projects_door.png';
+import BigFishDoor from '../assets/door/bigfish_door.png';
 
 const doorWrapperStyle = {
   width: '20vw',

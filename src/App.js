@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import pageConfig from './json/pageConfig.json';
 import './styles/App.css';
 
 import ContactInfo from './components/ContactInfo';
@@ -39,12 +40,16 @@ class App extends Component {
   getChildContext() {
     return {
       colors: {
-        darkGray: '#4A4A4A',
-        darkGreen: '#10332C',
-        lightBlue: 'rgba(35, 127, 177, 0.6)',
-        lightBrown: 'rgba(69, 55, 7, 0.6)',
-        warmBlue: 'rgba(77, 97, 103, 0.66)',
-        olive: 'rgba(46, 76, 12, 0.82)',
+        // Version 1
+        // darkGray: '#4A4A4A',
+        // darkGreen: '#10332C',
+        // lightBlue: 'rgba(35, 127, 177, 0.6)',
+        // lightBrown: 'rgba(69, 55, 7, 0.6)',
+        // warmBlue: 'rgba(77, 97, 103, 0.66)',
+        // olive: 'rgba(46, 76, 12, 0.82)',
+
+        // Version 2
+        darkGray: '#2E2E2D'
       },
     };
   }
@@ -103,27 +108,7 @@ class App extends Component {
     const leftClass = focused ? 'leftSide focused' : 'leftSide';
     const rightClass = focused ? 'rightSide focused' : 'rightSide';
 
-    let rightColor, rightTexture;
-    let darkenRatio = 0;
-    switch (currentPageName) {
-    case 'about me':
-      rightTexture = 'grey-linen';
-      rightColor = 'olive';
-      darkenRatio = 0.33;
-      break;
-    case 'music':
-      rightTexture = 'grey-linen';
-      rightColor = 'warmBlue';
-      break;
-    case 'projects':
-      rightTexture = 'grey-linen';
-      rightColor = 'lightBrown';
-      darkenRatio = 0.2;
-      break;
-    default:
-      rightTexture = 'shallow-water';
-      rightColor = 'lightBlue';
-    }
+    const { sideColor, sideTexture, darkenRatio } = pageConfig[currentPageName];
 
     return (
       <div className="App" style={wrapperStyle}>
@@ -136,7 +121,7 @@ class App extends Component {
             </ImageFiller>
           </div>
           <div className={rightClass} style={halfScreenStyle}>
-            <ImageFiller imageName={rightTexture} colorName={rightColor}>
+            <ImageFiller imageName={sideTexture} colorName={sideColor}>
               <Content />
             </ImageFiller>
           </div>

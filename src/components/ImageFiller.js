@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import AboutCover from '../images/cover/about.JPG';
-import MusicCover from '../images/cover/music.png';
-import ProjectsCover from '../images/cover/projects.png';
-import BigFishCover from '../images/cover/bigfish.png';
-import GreyLinen from '../images/texture/grey-linen.png';
-import ShallowWater from '../images/texture/shallow-water.png';
+import AboutCover from '../assets/cover/about.png';
+import ProjectsCover from '../assets/cover/projects.JPG';
+import BigFishCover from '../assets/cover/bigfish.png';
+import GreyLinen from '../assets/texture/grey-linen.png';
+import ShallowWater from '../assets/texture/shallow-water.png';
 
 const wrapperStyle = {
   display: 'flex',

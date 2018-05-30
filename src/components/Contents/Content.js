@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
-import '../../styles/Content.css';
+import pageConfig from '../../json/pageConfig.json';
 
 import AboutCover from './AboutContent';
 import Door from './../Door';
@@ -15,34 +16,23 @@ const doorWrapperStyle = {
 };
 
 const doorNameStyle = {
-  fontFamily: 'Dosis',
-  fontWeight: '400',
-  fontSize: '5vh',
+  fontFamily: 'Heiti SC',
+  fontWeight: '100',
+  fontSize: '35',
   textTransform: 'capitalize',
   color: null, // darkGray, specified in render
 };
 
 class Content extends Component {
   render() {
-    const { currentPageName, focused } = this.props;
+    const { currentPageName, focused, media } = this.props;
 
     let textColor;
     if (this.props.media === 'small') {
       textColor = 'white';
     } else {
-      switch (currentPageName) {
-      //TODO: change to json file
-      case 'music':
-        textColor = this.context.colors.darkGray;
-        break;
-      case 'projects':
-        textColor = this.context.colors.darkGreen;
-        break;
-      case 'about me':
-      case 'big fish':
-      default:
-        textColor = 'white';
-      }
+      const textColorName = pageConfig[currentPageName].textColor;
+      textColor = _.get(this.context.colors, textColorName, textColorName);
     }
 
     if (!focused) {
