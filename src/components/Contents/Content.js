@@ -14,52 +14,46 @@ const doorWrapperStyle = {
   alignItems: 'center',
 };
 
-const doorNameStyle = {
-  fontFamily: 'Heiti SC',
+const doorTextStyle = {
+  color: 'white',
+  fontFamily: "'Encode Sans Semi Condensed', sans-serif",
   fontWeight: '100',
-  fontSize: '35',
-  textTransform: 'capitalize',
-  color: null, // darkGray, specified in render
+  fontSize: '25px',
 };
+
+const doorTitleStyle = {
+  textTransform: 'uppercase',
+  letterSpacing: 2,
+  // fontSize: '30px',
+}
 
 class Content extends Component {
   render() {
     const { currentPageName, focused, media } = this.props;
 
-    let textColor;
-    if (this.props.media === 'small') {
-      textColor = 'white';
-    } else {
-      const textColorName = pageConfig[currentPageName].textColor;
-      textColor = _.get(this.context.colors, textColorName, textColorName);
-    }
-
     if (!focused) {
-      return this.renderDoor(textColor);
+      return this.renderDoor();
     }
 
-    return this.renderContent(textColor);
+    return this.renderContent();
   }
 
   renderDoor(textColor) {
     const { currentPageName } = this.props;
-    const doorNameStyle1 = { ...doorNameStyle, color: textColor };
-
     return (
       <div className="Content">
         <div style={doorWrapperStyle}>
-          <div style={doorNameStyle1}>{currentPageName}</div>
+          <div style={{ ...doorTextStyle, ...doorTitleStyle }}>{currentPageName}</div>
           <Door type="about me" color={textColor} />
-          <div style={doorNameStyle1}>Click to Enter</div>
+          <div style={doorTextStyle}>Click to Enter</div>
         </div>
       </div>
     );
   }
 
-  renderContent(textColor) {
+  renderContent() {
     const { currentPageName } = this.props;
-    const contentStyle = {
-      color: textColor,
+    const constructionStyle = {
       fontFamily: 'Nunito',
       lineHeight: '1.8',
       fontSize: '20px',
@@ -68,10 +62,9 @@ class Content extends Component {
 
     switch (currentPageName) {
     case 'about me':
-      return <AboutCover textColor={this.context.colors.darkGray}
-        headerFontFamily={doorNameStyle.fontFamily}/>;
+      return <AboutCover />;
     default:
-      return (<div style={contentStyle}>Sorry, this page is under Construction :'(</div>);
+      return (<div style={constructionStyle}>Sorry, this page is under Construction :'(</div>);
     }
   }
 }

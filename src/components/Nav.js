@@ -15,7 +15,7 @@ const menuWrapperStyle = {
 
 const menuTextStyle = {
   margin: '12px',
-  fontFamily: "'Encode Sans Semi Condensed', 'Heiti SC', sans-serif",
+  fontFamily: "'Encode Sans Semi Condensed', sans-serif",
   fontWeight: 200,
   whiteSpace: 'nowrap',
 };

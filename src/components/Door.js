@@ -97,7 +97,6 @@ Door.propTypes = {
   currentPageName: PropTypes.string.isRequired,
   media: PropTypes.string.isRequired,
   changeFocus: PropTypes.func.isRequired,
-  color: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

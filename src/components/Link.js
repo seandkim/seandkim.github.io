@@ -2,12 +2,13 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 
+
 export default class Link extends Component {
   render() {
-    const { href, style } = this.props;
+    const { href } = this.props;
 
     return (
-      <a href={href} style={style} target="_blank">
+      <a href={href} style={ linkStyle } target="_blank">
         {this.props.children}
       </a>
     )
