@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import pageConfig from '../../json/pageConfig.json';
-
 import AboutCover from './AboutContent';
 import Door from './../Door';
 

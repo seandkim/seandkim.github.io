@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import pageConfig from './json/pageConfig.json';
 import './styles/App.css';
 
-import ContactInfo from './components/ContactInfo';
+// import ContactInfo from './components/ContactInfo';
 import Content from './components/Contents/Content';
 import ImageFiller from './components/ImageFiller';
 import Logo from './components/Logo';
@@ -117,7 +117,6 @@ class App extends Component {
           <div className={leftClass} style={halfScreenStyle} onClick={this.unfocus.bind(this)}>
             <ImageFiller imageName={currentPageName} darkenRatio={darkenRatio}>
               <Nav />
-              <ContactInfo />
             </ImageFiller>
           </div>
           <div className={rightClass} style={halfScreenStyle}>

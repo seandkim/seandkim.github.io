@@ -2,49 +2,23 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import '../styles/Logo.css';
-
 const logoStyle = {
   position: 'absolute',
-  top: '5vw',
+  top: '65px',
+  left: '65px',
   zIndex: 1,
 
   color: 'white',
   fontFamily: 'Montserrat',
-  fontWeight: 'light',
+  fontWeight: 200,
   fontSize: '20px',
-  letterSpacing: '8px',
+  letterSpacing: 5.5,
 };
 
 class Logo extends Component {
-  componentWillReceiveProps(nextProps) {
-    // if page changed, do not animate the nav tabs
-    this.focusJustChanged = this.props.focused !== nextProps.focused;
-  }
-
   render() {
-    let customStyle;
-    switch (this.props.align) {
-    case "center":
-      customStyle = { left: "0px", right: "0px", textAlign: "center" };
-      break;
-    case "left":
-    default:
-      customStyle = { left: "6.5vw" };
-      break;
-    }
-
-    let classes = "Logo";
-    if (this.focusJustChanged) {
-      classes += ' focusJustChanged';
-    }
-
-    if (this.props.vertical) {
-      classes += " vertical";
-    }
-
     return (
-      <div className={classes} style={{ ...logoStyle, ...customStyle }}>
+      <div style={logoStyle}>
         SEAN D KIM
       </div>
     );

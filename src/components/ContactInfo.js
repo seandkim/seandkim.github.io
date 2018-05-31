@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import '../styles/ContactInfo.css';
-
 const wrapperStyle = {
   width: '35%',
   fontSize: '35px',

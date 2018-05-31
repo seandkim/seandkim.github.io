@@ -2,7 +2,6 @@ import Link from '../Link'
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../../styles/Content.css';
 
 import SkelterLabsLogo from '../../assets/logo/Skelter-Labs.png';
 import SquareSpaceLogo from '../../assets/logo/squarespace-logo-horizontal-black.png';

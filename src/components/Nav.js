@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
-import '../styles/Nav.css';
 
 import { changePage } from '../actions';
 
@@ -13,13 +13,10 @@ const menuWrapperStyle = {
   color: 'white',
 };
 
-const menuTabStyle = {
-  margin: '1vh',
-};
-
 const menuTextStyle = {
-  fontFamily: 'Roboto',
-  fontSize: '25px',
+  margin: '12px',
+  fontFamily: "'Encode Sans Semi Condensed', 'Heiti SC', sans-serif",
+  fontWeight: 200,
   whiteSpace: 'nowrap',
 };
 
@@ -27,45 +24,27 @@ class Nav extends Component {
   constructor(props) {
     super(props);
     this.pages = ['about me', 'projects', 'big fish']; // change to context
-    // this.pageJustChanged = true; TODO
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // if page changed, do not animate the nav tabs
-    this.focusJustChanged = this.props.focused !== nextProps.focused;
   }
 
   render() {
-    const { currentPageName, focused } = this.props;
-    const tabs = [];
-    for (let i = 0; i < this.pages.length; i += 1) {
-      const thisPageName = this.pages[i];
-      let menuTabClasses = focused ? 'menu-tab focused' : 'menu-tab';
-      const menuTextClasses = focused ? 'menu-text focused' : 'menu-text';
-      if (this.focusJustChanged) {
-        menuTabClasses += ' focusedJustChanged';
+    const { currentPageName } = this.props;
+
+    const tabs = _.map(this.pages, (pageName, i) => {
+      const style = {
+        ...menuTextStyle,
+        borderBottom: pageName === currentPageName ? '1px solid white' : 'none',
       }
 
-      const thisTabStyle = { ...menuTabStyle };
-      if (thisPageName === currentPageName) {
-        menuTabClasses += ' selected';
-      }
-
-      const elem = (
-        <div key={i} style={thisTabStyle} className={menuTabClasses}>
-          <div style={menuTextStyle} className={menuTextClasses}
-            onClick={() => this.props.changePage(thisPageName)}>
-            {thisPageName}
-          </div>
+      return (
+        <div key={i} onClick={() => this.props.changePage(pageName)}
+          style={style} >
+          {pageName}
         </div>
-      );
+      )
+    });
 
-      tabs.push(elem);
-    }
-
-    const navClasses = focused ? 'Nav focused' : 'tab';
     return (
-      <div className={navClasses} style={menuWrapperStyle}>
+      <div style={menuWrapperStyle}>
         { tabs }
       </div>
     );
