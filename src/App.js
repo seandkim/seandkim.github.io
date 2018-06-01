@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import pageConfig from './json/pageConfig.json';
-import './styles/App.css';
+// import './styles/App.css';
 
 // import ContactInfo from './components/ContactInfo';
 import Content from './components/Contents/Content';
@@ -89,20 +89,25 @@ class App extends Component {
     this.props.changePage('projects');
   }
 
+  renderSmall() {
+    const { currentPageName} = this.props;
+    return (
+      <div style={wrapperStyle} >
+        <Logo align="center" vertical={false} />
+        <div style={flexStyle}>
+          <ImageFiller imageName={currentPageName}>
+            <Content />
+          </ImageFiller>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { currentPageName, focused, media } = this.props;
 
     if (media === 'small') {
-      return (
-        <div style={wrapperStyle} >
-          <Logo align="center" vertical={false} />
-          <div style={flexStyle}>
-            <ImageFiller imageName={currentPageName}>
-              <Content />
-            </ImageFiller>
-          </div>
-        </div>
-      );
+      return this.renderSmall();
     }
 
     const leftClass = focused ? 'leftSide focused' : 'leftSide';

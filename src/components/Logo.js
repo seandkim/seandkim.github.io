@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 
 const logoStyle = {
   position: 'absolute',
-  top: '65px',
-  left: '65px',
+  top: '40px',
+  left: '40px',
   zIndex: 1,
 
   color: 'white',
   fontFamily: 'Montserrat',
   fontWeight: 200,
-  fontSize: '20px',
+  fontSize: '15px',
   letterSpacing: 5.5,
 };
 

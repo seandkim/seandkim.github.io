@@ -9,8 +9,9 @@ import ProjectsDoor from '../assets/door/projects_door.png';
 import BigFishDoor from '../assets/door/bigfish_door.png';
 
 const doorWrapperStyle = {
-  width: '20vw',
-  height: '40vh',
+  width: '160px',
+  maxHeight: '320px',
+  height: '50vh',
 };
 
 const doorStyle = {
@@ -22,26 +23,22 @@ const doorStyle = {
   height: '100%',
 };
 
-const turnWhite = {
-  filter: 'brightness(0) invert(100%)',
-};
-
 class Door extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notDone: false,
+      displayConstructionMessage: false,
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.currentPageName !== nextProps.currentPageName) {
-      this.setState({ notDone: false });
+      this.setState({ displayConstructionMessage: false });
     }
   }
 
   render() {
-    const { currentPageName, media, color } = this.props;
+    const { currentPageName } = this.props;
     let imageName;
     switch (currentPageName) {
     case 'about me':
@@ -59,16 +56,13 @@ class Door extends Component {
     }
 
     let doorStyle1 = { ...doorStyle, backgroundImage: `url(${imageName})` };
-    if (media === 'small') {
-      doorStyle1 = { ...doorStyle1, ...turnWhite };
-    }
 
     return (
       <div>
         <div className="Door" style={doorWrapperStyle} onClick={this.onClick.bind(this, currentPageName)}>
           <div style={doorStyle1} />
         </div>
-        {this.state.notDone &&
+        {this.state.displayConstructionMessage &&
           <div style={{
             position: 'absolute', left: 0, right: 0, top: '40%',
             margin: 'auto', fontSize: '60px', color: this.props.color,
@@ -81,9 +75,9 @@ class Door extends Component {
   }
 
   onClick(currentPageName) {
-    const notDonePages = ['projects', 'big fish'];
-    if (notDonePages.indexOf(currentPageName) >= 0 || this.props.media === 'small') {
-      this.setState({ notDone: true })
+    const constructionPages = ['projects', 'big fish'];
+    if (constructionPages.indexOf(currentPageName) >= 0 || this.props.media === 'small') {
+      this.setState({ displayConstructionMessage: true })
       return;
     }
 
@@ -95,13 +89,11 @@ class Door extends Component {
 
 Door.propTypes = {
   currentPageName: PropTypes.string.isRequired,
-  media: PropTypes.string.isRequired,
   changeFocus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   currentPageName: state.currentPageName,
-  media: state.media,
 });
 
 const mapDispatchToProps = {
