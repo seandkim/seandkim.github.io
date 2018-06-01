@@ -1,0 +1,18 @@
+#Nav {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.nav-tab {
+  margin: 12px;
+  font-family: 'Encode Sans Semi Condensed', sans-serif;
+  font-weight: 200;
+  white-space: nowrap;
+}
+
+.selected {
+  border-bottom: 1px solid white;
+}

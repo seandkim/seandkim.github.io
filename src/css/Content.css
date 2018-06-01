@@ -1,0 +1,26 @@
+.door-wrapper {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.door-text {
+  color: white;
+  font-family: 'Encode Sans Semi Condensed', sans-serif;
+  font-weight: 100;
+  font-size: 25px;
+}
+
+.door-title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.construction-message {
+  font-family: Nunito;
+  line-height: 1.8;
+  font-size: 20px;
+  text-align: left;
+}

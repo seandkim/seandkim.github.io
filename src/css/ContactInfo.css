@@ -1,7 +1,7 @@
 a.icon {
   color: white;
 }
-
+/*
 .ContactInfo.focusJustChanged > div:nth-child(1) {
   animation: bounce-up1 400ms ease-in-out;
   animation-fill-mode: forwards;
@@ -84,4 +84,4 @@ a.icon {
   100% {
     transform: translateY(0px);
   }
-}
+} */

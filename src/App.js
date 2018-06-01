@@ -1,54 +1,20 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import pageConfig from './json/pageConfig.json';
-// import './styles/App.css';
 
 // import ContactInfo from './components/ContactInfo';
-import Content from './components/Contents/Content';
+import Content from './components/Content';
 import ImageFiller from './components/ImageFiller';
 import Logo from './components/Logo';
 import Nav from './components/Nav';
-
+import pageConfig from './json/pageConfig.json';
 import { changeMedia, changeFocus, changePage } from './actions';
-
-const wrapperStyle = {
-  weight: '100vw',
-  height: '100vh',
-};
-
-const flexStyle = {
-  position: 'relative',
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
-
-const halfScreenStyle = {
-  position: 'relative',
-  width: '50vw',
-  height: '100vh',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-};
+import './css/App.css';
 
 class App extends Component {
   getChildContext() {
     return {
       colors: {
-        // Version 1
-        // darkGray: '#4A4A4A',
-        // darkGreen: '#10332C',
-        // lightBlue: 'rgba(35, 127, 177, 0.6)',
-        // lightBrown: 'rgba(69, 55, 7, 0.6)',
-        // warmBlue: 'rgba(77, 97, 103, 0.66)',
-        // olive: 'rgba(46, 76, 12, 0.82)',
-
-        // Version 2
         darkGray: '#2E2E2D'
       },
     };
@@ -92,9 +58,9 @@ class App extends Component {
   renderSmall() {
     const { currentPageName} = this.props;
     return (
-      <div style={wrapperStyle} >
+      <div className="App" >
         <Logo align="center" vertical={false} />
-        <div style={flexStyle}>
+        <div className="flex-wrapper">
           <ImageFiller imageName={currentPageName}>
             <Content />
           </ImageFiller>
@@ -109,22 +75,18 @@ class App extends Component {
     if (media === 'small') {
       return this.renderSmall();
     }
-
-    const leftClass = focused ? 'leftSide focused' : 'leftSide';
-    const rightClass = focused ? 'rightSide focused' : 'rightSide';
-
     const { sideColor, sideTexture, darkenRatio } = pageConfig[currentPageName];
 
     return (
-      <div className="App" style={wrapperStyle}>
+      <div id="App">
         <Logo align="left" vertical={!!focused} />
-        <div style={flexStyle}>
-          <div className={leftClass} style={halfScreenStyle} onClick={this.unfocus.bind(this)}>
+        <div className="flex-wrapper">
+          <div className="half-screen-panel" onClick={this.unfocus.bind(this)}>
             <ImageFiller imageName={currentPageName} darkenRatio={darkenRatio}>
               <Nav />
             </ImageFiller>
           </div>
-          <div className={rightClass} style={halfScreenStyle}>
+          <div className="half-screen-panel">
             <ImageFiller imageName={sideTexture} colorName={sideColor}>
               <Content />
             </ImageFiller>

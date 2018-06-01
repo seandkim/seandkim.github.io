@@ -4,21 +4,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 
 import { changePage } from '../actions';
-
-const menuWrapperStyle = {
-  display: 'flex',
-  alignSelf: 'center',
-  flexDirection: 'column',
-  alignItems: 'center',
-  color: 'white',
-};
-
-const menuTextStyle = {
-  margin: '12px',
-  fontFamily: "'Encode Sans Semi Condensed', sans-serif",
-  fontWeight: 200,
-  whiteSpace: 'nowrap',
-};
+import '../css/Nav.css';
 
 class Nav extends Component {
   constructor(props) {
@@ -30,31 +16,23 @@ class Nav extends Component {
     const { currentPageName } = this.props;
 
     const tabs = _.map(this.pages, (pageName, i) => {
-      const style = {
-        ...menuTextStyle,
-        borderBottom: pageName === currentPageName ? '1px solid white' : 'none',
-      }
+      const classNames = pageName === currentPageName ? 'nav-tab selected' : 'nav-tab';
 
       return (
         <div key={i} onClick={() => this.props.changePage(pageName)}
-          style={style} >
+          className={classNames} >
           {pageName}
         </div>
       )
     });
 
-    return (
-      <div style={menuWrapperStyle}>
-        { tabs }
-      </div>
-    );
+    return (<div id='Nav'>{ tabs }</div>);
   }
 }
 
 const mapStateToProps = state => ({
   currentPageName: state.currentPageName,
   focused: state.focused,
-  media: state.media,
 });
 
 const mapDispatchToProps = {

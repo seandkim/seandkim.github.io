@@ -1,4 +1,16 @@
-.Logo:not(vertical).focusJustChanged {
+#Logo {
+position: absolute;
+top: 40px;
+left: 40px;
+z-index: 1;
+color: white;
+font-family: Montserrat, sans-serif;
+font-weight: 200;
+font-size: 15px;
+letter-spacing: 5.5px;
+}
+
+/* .Logo:not(vertical).focusJustChanged {
     transform-origin: top left;
     animation: spin-rev 500ms ease-in-out;
     animation-fill-mode: forwards;
@@ -26,4 +38,4 @@
     to {
         transform: rotate(0deg);
     }
-}
+} */

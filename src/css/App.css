@@ -1,28 +1,29 @@
-.App {
+#App {
   text-align: center;
+  width: 100vw;
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.flex-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
+.half-screen-panel {
+  position: relative;
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+};
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-.leftSide:not(focused) {
+/* .leftSide:not(focused) {
   animation: focused-left-rev 500ms ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -60,4 +61,4 @@
 @keyframes focused-right-rev {
   from { width: 90vw; }
   to { width: 50vw; }
-}
+} */

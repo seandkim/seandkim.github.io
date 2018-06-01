@@ -1,24 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-const logoStyle = {
-  position: 'absolute',
-  top: '40px',
-  left: '40px',
-  zIndex: 1,
-
-  color: 'white',
-  fontFamily: 'Montserrat',
-  fontWeight: 200,
-  fontSize: '15px',
-  letterSpacing: 5.5,
-};
+import '../css/Logo.css';
 
 class Logo extends Component {
   render() {
     return (
-      <div style={logoStyle}>
+      <div id="Logo">
         SEAN D KIM
       </div>
     );
@@ -26,14 +14,10 @@ class Logo extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentPageName: state.currentPageName,
   focused: state.focused,
-  media: state.media,
 });
 
 Logo.propTypes = {
-  align: PropTypes.string.isRequired,
-  vertical: PropTypes.bool.isRequired,
   focused: PropTypes.bool.isRequired,
 };
 
