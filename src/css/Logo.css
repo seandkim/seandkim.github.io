@@ -10,6 +10,13 @@
     letter-spacing: 5.5px;
 }
 
+.back-arrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
 /* .Logo:not(vertical).focusJustChanged {
     transform-origin: top left;
     animation: spin-rev 500ms ease-in-out;

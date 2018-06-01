@@ -18,7 +18,7 @@
   letter-spacing: 2px;
 }
 
-/* give box shadow */
+/* TODO: scale up when hovered */
 .construction-message {
   position: absolute;
   left: 0;
