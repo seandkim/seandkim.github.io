@@ -1,0 +1,27 @@
+.Content {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  overflow-y: scroll;
+
+  /* text */
+  color: white;
+  font-family: Raleway, sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+  font-size: 16px;
+  text-align: left;
+}
+
+.Content h5 {
+  font-size: 20px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+#AboutContent .link {
+  cursor: pointer;
+  color: white;
+  white-space: nowrap;
+  text-decoration: none;
+}

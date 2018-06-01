@@ -1,44 +1,19 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import '../css/Content.css'
+import '../../css/Content.css';
 
-const wrapperStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '30px',
-  overflowY: 'scroll',
-};
 
-const headerStyle = {
-  fontWeight: '700',
-  fontStyle: 'italic',
-}
-
-const textStyle = {
-  color: 'white',
-  fontFamily: 'Raleway',
-  fontWeight: '300',
-  lineHeight: '1.8',
-  fontSize: '20px',
-  textAlign: 'left',
-};
-
-const linkStyle = {
-  color: 'white',
-  whiteSpace: 'nowrap',
-  textDecoration: 'none',
-}
 
 class AboutContent extends Component {
   render() {
-    const skelterLabs = <a style={linkStyle} href='https://www.skelterlabs.com/' target="_blank">Skelter Labs</a>
-    const squarespace = <a style={linkStyle} href='https://www.skelterlabs.com/' target="_blank">Skelter Labs</a>
-    const contactMe = <span style={linkStyle} onClick={this.contactMeClicked}>contact me</span>
+    const skelterLabs = <a className='link' href='https://www.skelterlabs.com/' target="_blank">Skelter Labs</a>
+    const squarespace = <a className='link' href='https://www.skelterlabs.com/' target="_blank">Skelter Labs</a>
+    const contactMe = <span className='link' onClick={this.contactMeClicked}>contact me</span>
 
     return (
-      <div key="about-content" style={{ ...wrapperStyle, ...textStyle }}>
-        <h5 style={{ ...textStyle, ...headerStyle }}>
+      <div id="AboutContent" className='Content'>
+        <h5>
           Hello, I’m Sean.
         </h5>
         <span>
