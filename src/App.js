@@ -56,7 +56,7 @@ class App extends Component {
   renderSmall() {
     const { currentPageName} = this.props;
     return (
-      <div className="App" >
+      <div id="App" >
         <Logo align="center" vertical={false} />
         <div className="flex-wrapper">
           <ImageFiller imageName={currentPageName}>

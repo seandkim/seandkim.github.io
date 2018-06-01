@@ -34,7 +34,14 @@ class ContentPanel extends Component {
         <AboutCover/>
       );
     default:
-      return (<div className="construction-message">Sorry, this page is under Construction(</div>);
+      return (
+        <div>
+          {this.renderDoorWrapper(currentPageName)}
+          <div className="construction-message">
+            Under <br /> Construction
+          </div>
+        </div>
+      );
     }
   }
 }

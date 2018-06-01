@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-};
+}
 
 /* .leftSide:not(focused) {
   animation: focused-left-rev 500ms ease-in-out;

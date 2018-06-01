@@ -1,0 +1,13 @@
+#Door {
+  width: 160px;
+  max-height: 320px;
+  height: 50vh;
+}
+
+.door-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+}

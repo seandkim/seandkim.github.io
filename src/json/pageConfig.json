@@ -1,7 +1,7 @@
 {
   "about me": {
     "imageName": "AboutCover",
-    "darkenRatio": 0.2,
+    "darkenRatio": 0.1,
     "sideColor": "darkGray",
     "sideTexture": null
   },
