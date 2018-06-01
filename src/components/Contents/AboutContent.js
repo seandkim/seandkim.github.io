@@ -8,7 +8,7 @@ import '../../css/Content.css';
 class AboutContent extends Component {
   render() {
     const skelterLabs = <a className='link' href='https://www.skelterlabs.com/' target="_blank">Skelter Labs</a>
-    const squarespace = <a className='link' href='https://www.skelterlabs.com/' target="_blank">Skelter Labs</a>
+    const squarespace = <a className='link' href='http://squarespace.com/' target="_blank">Squarespace</a>
     const contactMe = <span className='link' onClick={this.contactMeClicked}>contact me</span>
 
     return (
