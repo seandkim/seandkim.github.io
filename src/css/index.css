@@ -1,9 +1,12 @@
 body {
   margin: 0;
   padding: 0;
+  /* text */
   font-family: 'Raleway', sans-serif;
   font-weight: 100;
   font-size: 16px;
+  color: white;
+
   /* disable scroll */
   overflow: hidden;
 }

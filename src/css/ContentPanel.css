@@ -19,8 +19,9 @@
 }
 
 .construction-message {
+  color: white;
   font-family: Nunito;
-  line-height: 1.8;
   font-size: 20px;
+  line-height: 1.8;
   text-align: left;
 }
