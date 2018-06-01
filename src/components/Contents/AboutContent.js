@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { TweenMax } from 'gsap';
 import { connect } from 'react-redux';
+// import '../css/Content.css'
 
 const wrapperStyle = {
   display: 'flex',
@@ -31,25 +31,10 @@ const linkStyle = {
 }
 
 class AboutContent extends Component {
-  componentWillAppear(callback) {
-    console.log('component will appear.');
-    callback();
-  }
-
-  componentWillEnter(callback) {
-    console.log('component will enter.');
-    // callback();
-  }
-
-  componentWillLeave(callback) {
-    console.log('component will leave.');
-    // callback();
-  }
-
   render() {
     const skelterLabs = <a style={linkStyle} href='https://www.skelterlabs.com/' target="_blank">Skelter Labs</a>
     const squarespace = <a style={linkStyle} href='https://www.skelterlabs.com/' target="_blank">Skelter Labs</a>
-    const contactMe = <a style={linkStyle} href='mailto:sdk1@andrew.cmu.edu' target="_blank">contact me</a>
+    const contactMe = <span style={linkStyle} onClick={this.contactMeClicked}>contact me</span>
 
     return (
       <div key="about-content" style={{ ...wrapperStyle, ...textStyle }}>

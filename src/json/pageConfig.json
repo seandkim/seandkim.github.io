@@ -1,23 +1,20 @@
 {
   "about me": {
     "imageName": "AboutCover",
-    "darkenRatio": 0,
+    "darkenRatio": 0.2,
     "sideColor": "darkGray",
-    "sideTexture": null,
-    "textColor": "white"
+    "sideTexture": null
   },
   "projects": {
     "imageName": "ProjectsCover",
     "darkenRatio": 0.33,
     "sideColor": "olive",
-    "sideTexture": "grey-linen",
-    "textColor": "white"
+    "sideTexture": "grey-linen"
   },
   "big fish": {
     "imageName": "ProjectsCover",
     "darkenRatio": 0.33,
     "sideColor": "lightBlue",
-    "sideTexture": "shallow-water",
-    "textColor": "white"
+    "sideTexture": "shallow-water"
   }
 }

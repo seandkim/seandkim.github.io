@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 
 import AboutCover from './Contents/AboutContent';
 import Door from './Door';
-import '../css/Content.css'
+import '../css/ContentPanel.css'
 
-class Content extends Component {
+class ContentPanel extends Component {
   render() {
     const { currentPageName, focused } = this.props;
 
@@ -39,12 +39,12 @@ class Content extends Component {
   }
 }
 
-Content.propTypes = {
+ContentPanel.propTypes = {
   currentPageName: PropTypes.string.isRequired,
   focused: PropTypes.bool.isRequired,
 };
 
-Content.contextTypes = {
+ContentPanel.contextTypes = {
   colors: PropTypes.object,
 };
 
@@ -53,4 +53,4 @@ const mapStateToProps = state => ({
   focused: state.focused,
 });
 
-export default connect(mapStateToProps)(Content);
+export default connect(mapStateToProps)(ContentPanel);

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // import ContactInfo from './components/ContactInfo';
-import Content from './components/Content';
+import ContentPanel from './components/ContentPanel';
 import ImageFiller from './components/ImageFiller';
 import Logo from './components/Logo';
 import Nav from './components/Nav';
@@ -15,7 +15,9 @@ class App extends Component {
   getChildContext() {
     return {
       colors: {
-        darkGray: '#2E2E2D'
+        darkGray: '#2E2E2D', // about me
+        olive: 'rgba(46, 76, 12, 0.82)', // projects
+        lightBlue: 'rgba(35, 127, 177, 0.6)', // big fish
       },
     };
   }
@@ -51,10 +53,6 @@ class App extends Component {
     }
   }
 
-  handleSwipe(event) {
-    this.props.changePage('projects');
-  }
-
   renderSmall() {
     const { currentPageName} = this.props;
     return (
@@ -62,7 +60,7 @@ class App extends Component {
         <Logo align="center" vertical={false} />
         <div className="flex-wrapper">
           <ImageFiller imageName={currentPageName}>
-            <Content />
+            <ContentPanel />
           </ImageFiller>
         </div>
       </div>
@@ -88,7 +86,7 @@ class App extends Component {
           </div>
           <div className="half-screen-panel">
             <ImageFiller imageName={sideTexture} colorName={sideColor}>
-              <Content />
+              <ContentPanel />
             </ImageFiller>
           </div>
         </div>
