@@ -9,12 +9,16 @@ import '../css/ContentPanel.css'
 class ContentPanel extends Component {
   render() {
     const { currentPageName, focused } = this.props;
-
     return (
       <div id="Content">
-        {focused ? this.renderContent(currentPageName) : this.renderDoorWrapper(currentPageName)}
+        {this.renderDoorWrapper(currentPageName)}
       </div>
     );
+    // return (
+    //   <div id="Content">
+    //     {focused ? this.renderContent(currentPageName) : this.renderDoorWrapper(currentPageName)}
+    //   </div>
+    // );
   }
 
   renderDoorWrapper(currentPageName) {

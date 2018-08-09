@@ -9,9 +9,11 @@ import Logo from './components/Logo';
 import Nav from './components/Nav';
 import pageConfig from './json/pageConfig.json';
 import { changeMedia, changeFocus, changePage } from './actions';
+import { initFocusAnimation } from './util/animations.js';
 import './css/App.css';
 
 class App extends Component {
+  // Global variables
   getChildContext() {
     return {
       colors: {
@@ -38,6 +40,7 @@ class App extends Component {
     }
   }
 
+  // Check dimension & initialize all multi-component variables
   componentDidMount() {
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions.bind(this));
@@ -45,6 +48,28 @@ class App extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDimensions.bind(this));
+  }
+
+  // Deals with animation for updating components
+  componentDidUpdate(prevProps) {
+    // Re-initialize animation if necessary
+    if (prevProps.media !== this.props.media) {
+      if (this.props.media === 'large') {
+        this.focusAnimation = initFocusAnimation();
+      } else {
+        // TODO
+      }
+    }
+
+    if (prevProps.focused !== this.props.focused) {
+      if (this.props.focused) {
+        // Change logo to back arrow
+        this.focusAnimation.play();
+      } else {
+        // Change back arrow to logo
+        this.focusAnimation.reverse();
+      }
+    }
   }
 
   unfocus() {
@@ -73,18 +98,19 @@ class App extends Component {
     if (media === 'small') {
       return this.renderSmall();
     }
+
     const { sideColor, sideTexture, darkenRatio } = pageConfig[currentPageName];
 
     return (
       <div id="App">
         <Logo align="left" vertical={!!focused} />
         <div className="flex-wrapper">
-          <div className="half-screen-panel" onClick={this.unfocus.bind(this)}>
+          <div className="half-screen-panel nav-panel-wrapper" onClick={this.unfocus.bind(this)}>
             <ImageFiller imageName={currentPageName} darkenRatio={darkenRatio}>
               <Nav />
             </ImageFiller>
           </div>
-          <div className="half-screen-panel">
+          <div className="half-screen-panel content-panel-wrapper">
             <ImageFiller imageName={sideTexture} colorName={sideColor}>
               <ContentPanel />
             </ImageFiller>

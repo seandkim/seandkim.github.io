@@ -26,7 +26,6 @@ const absStyle = {
   backgroundSize: 'auto 100%',
 };
 
-
 export default class ImageFiller extends Component {
   render() {
     const { imageName, colorName, darkenRatio } = this.props;
