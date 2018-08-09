@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // import ContactInfo from './components/ContactInfo';
-import ContentPanel from './components/ContentPanel';
-import ImageFiller from './components/ImageFiller';
-import Logo from './components/Logo';
-import Nav from './components/Nav';
-import pageConfig from './json/pageConfig.json';
-import { changeMedia, changeFocus, changePage } from './actions';
-import { initFocusAnimation } from './util/animations.js';
-import './css/App.css';
+import ContentPanel from '../ContentPanel';
+import ImageFiller from '../../components/ImageFiller';
+import Logo from '../../components/Logo';
+import Nav from '../../components/Nav';
+import pageConfig from '../../json/pageConfig.json';
+import { changeMedia, changeFocus, changePage } from '../../actions';
+import { initFocusAnimation } from '../../util/animations.js';
+import './App.css';
 
 class App extends Component {
   // Global variables

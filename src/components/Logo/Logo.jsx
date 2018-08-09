@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import BackArrow from '../assets/icon/back-arrow.svg';
-import { changeFocus } from '../actions';
-import '../css/Logo.css';
+import BackArrow from '../../assets/icon/back-arrow.svg';
+import { changeFocus } from '../../actions';
+import './Logo.css';
 
 class Logo extends Component {
   render() {

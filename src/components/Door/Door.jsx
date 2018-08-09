@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { changeFocus } from './../actions';
-import '../css/Door.css';
+import { changeFocus } from '../../actions';
+import './Door.css';
 
-import AboutDoor from '../assets/door/aboutme_door.png';
-import ProjectsDoor from '../assets/door/projects_door.png';
-import BigFishDoor from '../assets/door/bigfish_door.png';
+import AboutDoor from '../../assets/door/aboutme_door.png';
+import ProjectsDoor from '../../assets/door/projects_door.png';
+import BigFishDoor from '../../assets/door/bigfish_door.png';
 
 class Door extends Component {
   render() {

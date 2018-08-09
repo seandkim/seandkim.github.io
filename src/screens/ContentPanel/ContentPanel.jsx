@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import AboutCover from './Contents/AboutContent';
-import Door from './Door';
-import '../css/ContentPanel.css'
+import AboutCover from './components/AboutContent';
+import Door from '../../components/Door';
+import './ContentPanel.css';
 
 class ContentPanel extends Component {
   render() {

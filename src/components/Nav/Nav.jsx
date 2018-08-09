@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
-import { changePage } from '../actions';
-import '../css/Nav.css';
+import { changePage } from '../../actions';
+import './Nav.css';
 
 class Nav extends Component {
   constructor(props) {
