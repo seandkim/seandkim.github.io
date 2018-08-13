@@ -9,7 +9,7 @@ import Logo from '../../components/Logo';
 import Nav from '../../components/Nav';
 import pageConfig from '../../json/pageConfig.json';
 import { changeMedia, changeFocus, changePage } from '../../actions';
-import { initFocusAnimation } from '../../util/animations.js';
+import { getFocusAnimation } from '../../util/animations.js';
 import './App.css';
 
 class App extends Component {
@@ -54,8 +54,9 @@ class App extends Component {
   componentDidUpdate(prevProps) {
     // Re-initialize animation if necessary
     if (prevProps.media !== this.props.media) {
+      // TODO: fix bug where changing media messes up focus animation (back arrow doesn't show)
       if (this.props.media === 'large') {
-        this.focusAnimation = initFocusAnimation();
+        this.focusAnimation = getFocusAnimation();
       } else {
         // TODO
       }

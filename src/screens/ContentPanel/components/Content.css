@@ -17,13 +17,20 @@
   font-size: 20px;
   font-weight: 600;
   /* TODO: ask if italic is better than text shadow */
-  /* font-style: italic; */
+  font-style: italic;
   text-shadow: -3px 3px rgba(0,0,0,0.3);
+}
+
+.Content .content-body {
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #AboutContent .link {
   cursor: pointer;
   color: white;
   white-space: nowrap;
-  text-decoration: none;
+  text-decoration: underline;
 }
