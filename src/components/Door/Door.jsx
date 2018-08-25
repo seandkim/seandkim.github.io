@@ -29,10 +29,8 @@ class Door extends Component {
     }
 
     return (
-      <div>
-        <div id="Door" onClick={this.onClick.bind(this, currentPageName)}>
-          <div className="door-image" style={{ backgroundImage: `url(${imageName})` }} />
-        </div>
+      <div id="Door" onClick={this.onClick.bind(this, currentPageName)}>
+        <div className="door-image" style={{ backgroundImage: `url(${imageName})` }} />
       </div>
     );
   }

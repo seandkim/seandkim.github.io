@@ -2,14 +2,14 @@ import $ from 'jquery';
 import { TimelineMax, Power1 } from 'gsap';
 
 export const getFocusAnimation = () => {
-  const duration = 0.5;
+  const duration = 0.4;
   const rotationDegree = 180;
   const tl = new TimelineMax();
   tl.addLabel('start');
   // Resize the panels
   tl.fromTo($('.content-panel-wrapper'), 0.6,
     { width: '50vw' },
-    { width: '100vw', ease: Power1.easeOut },
+    { width: '90vw', ease: Power1.easeOut },
     'start',
   );
 
@@ -41,22 +41,18 @@ export const getFocusAnimation = () => {
     opacity: 1,
   }, {
     opacity: 0,
-  });
+  }, 'start');
 
-  tl.pause();
-  return tl;
-}
-
-export const getContentAnimation = () => {
-  const tl = new TimelineMax();
-  tl.addLabel('start', 0.7);
+  // Content
+  tl.addLabel('content-start', 0.4);
   tl.addLabel('body-start', "start+=0.7");
 
   tl.fromTo('#AboutContent .content-header', 0.5, {
     opacity: 0,
   }, {
     opacity: 1,
-  }, "start");
+    }, 'content-start'
+  );
 
   // Introduce content-body one by one
   tl.staggerFromTo($('#AboutContent .content-body div'), 2,
@@ -64,6 +60,9 @@ export const getContentAnimation = () => {
     { opacity: 1 },
     0.2, 'body-start'
   )
+
+  tl.pause();
+  return tl;
 }
 
 export const dummy = () => {

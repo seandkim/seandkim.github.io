@@ -11,17 +11,16 @@ class ContentPanel extends Component {
     const { currentPageName, focused } = this.props;
     return (
       <div id="Content">
-        {focused ? this.renderContent(currentPageName) : this.renderDoorWrapper(currentPageName)}
-      </div>
-    );
-  }
-
-  renderDoorWrapper(currentPageName) {
-    return (
-      <div className="door-wrapper">
-        <div className="door-text door-title">{currentPageName}</div>
-        <Door type="about me" />
-        <div className="door-text">Click to Enter</div>
+        <div className="content-elem" style={{ zIndex: 10 }}>
+          <div className="door-wrapper">
+            <div className="door-text door-title">{currentPageName}</div>
+            <Door type="about me" />
+            <div className="door-text">Click to Enter</div>
+          </div>
+        </div>
+        <div className="content-elem">
+          {this.renderContent(currentPageName)}
+        </div>
       </div>
     );
   }

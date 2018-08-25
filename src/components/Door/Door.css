@@ -1,4 +1,5 @@
 #Door {
+  /* allow door to be clicked */
   width: 160px;
   max-height: 320px;
   height: 50vh;

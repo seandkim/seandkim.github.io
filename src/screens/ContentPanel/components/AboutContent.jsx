@@ -5,10 +5,6 @@ import { getContentAnimation } from '../../../util/animations';
 import './Content.css';
 
 class AboutContent extends Component {
-  componentDidMount() {
-    this.contentAnimation = getContentAnimation();
-  }
-
   render() {
     const skelterLabs = <a className='link' href='https://www.skelterlabs.com/' target="_blank">Skelter Labs</a>
     const squarespace = <a className='link' href='http://squarespace.com/' target="_blank">Squarespace</a>
@@ -26,8 +22,7 @@ class AboutContent extends Component {
             May 2019. As a software engineer, I have previously interned at {skelterLabs} and {squarespace}.
           </div>
           <div>
-            I am looking for full time opportunity in Web Application
-            backend or full-Stack) and Distributed Systems.
+            I am looking for full time opportunity in Web Application and Distributed Systems.
           </div>
           <div>
             Feel free to {contactMe} if you want!
