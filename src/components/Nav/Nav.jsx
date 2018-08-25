@@ -13,20 +13,21 @@ class Nav extends Component {
   }
 
   render() {
-    const { currentPageName } = this.props;
+    const { currentPageName, changeAppPage } = this.props;
 
     const tabs = _.map(this.pages, (pageName, i) => {
       const classNames = pageName === currentPageName ? 'nav-tab selected' : 'nav-tab';
 
       return (
-        <div key={i} onClick={() => this.props.changePage(pageName)}
-          className={classNames} >
+        <div key={i} onClick={() => changeAppPage(pageName)}
+          className={classNames}
+        >
           {pageName}
         </div>
-      )
+      );
     });
 
-    return (<div id='Nav'>{ tabs }</div>);
+    return (<div id="Nav">{ tabs }</div>);
   }
 }
 
@@ -36,13 +37,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  changePage,
+  changeAppPage: changePage,
 };
 
 Nav.propTypes = {
   currentPageName: PropTypes.string.isRequired,
-  focused: PropTypes.bool.isRequired,
-  changePage: PropTypes.func.isRequired,
+  changeAppPage: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);

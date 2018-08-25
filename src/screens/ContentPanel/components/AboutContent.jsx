@@ -1,17 +1,23 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getContentAnimation } from '../../../util/animations';
 import './Content.css';
 
 class AboutContent extends Component {
+  contactMeClicked() {
+    console.log('contact me clicked');
+  }
+
   render() {
-    const skelterLabs = <a className='link' href='https://www.skelterlabs.com/' target="_blank">Skelter Labs</a>
-    const squarespace = <a className='link' href='http://squarespace.com/' target="_blank">Squarespace</a>
-    const contactMe = <span className='link' onClick={this.contactMeClicked}>contact me</span>
+    const skelterLabs = (
+      <a className="link" href="https://www.skelterlabs.com/" target="_blank">Skelter Labs</a>
+    );
+    const squarespace = (
+      <a className="link" href="http://squarespace.com/" target="_blank">Squarespace</a>
+    );
+    const contactMe = <span className="link" onClick={this.contactMeClicked}>contact me</span>;
 
     return (
-      <div id="AboutContent" className='Content'>
+      <div id="AboutContent" className="Content">
         <div className="content-header">
           <h5>Hello, I’m Sean.</h5>
         </div>
@@ -31,21 +37,7 @@ class AboutContent extends Component {
       </div>
     );
   }
-
-  contactMeClicked() {
-    console.log('contact me clicked');
-  }
 }
-
-AboutContent.propTypes = {
-  currentPageName: PropTypes.string.isRequired,
-  focused: PropTypes.bool.isRequired,
-  media: PropTypes.string.isRequired,
-};
-
-AboutContent.contextTypes = {
-  colors: PropTypes.object,
-};
 
 const mapStateToProps = state => ({
   currentPageName: state.currentPageName,

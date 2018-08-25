@@ -8,8 +8,8 @@ import ImageFiller from '../../components/ImageFiller';
 import Logo from '../../components/Logo';
 import Nav from '../../components/Nav';
 import pageConfig from '../../json/pageConfig.json';
-import { changeMedia, changeFocus, changePage } from '../../actions';
-import { getFocusAnimation } from '../../util/animations.js';
+import { changeMedia, changeFocus } from '../../actions';
+import { getFocusAnimation } from '../../util/animations';
 import './App.css';
 
 class App extends Component {
@@ -24,46 +24,28 @@ class App extends Component {
     };
   }
 
-  /**
-   * Calculate & Update state of new dimensions
-   */
-  updateDimensions() {
-    const ratio = window.innerWidth / window.innerHeight;
-    if (ratio < 0.8) {
-      if (this.props.media === 'large') {
-        this.props.changeMedia('small');
-      }
-    } else {
-      if (this.props.media === 'small') {
-        this.props.changeMedia('large');
-      }
-    }
-  }
-
   // Check dimension & initialize all multi-component variables
   componentDidMount() {
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions.bind(this));
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions.bind(this));
-  }
-
   // Deals with animation for updating components
   componentDidUpdate(prevProps) {
+    const { media, focused } = this.props;
+
     // Re-initialize animation if necessary
-    if (prevProps.media !== this.props.media) {
+    if (prevProps.media !== media) {
       // TODO: fix bug where changing media messes up focus animation (back arrow doesn't show)
-      if (this.props.media === 'large') {
+      if (media === 'large') {
         this.focusAnimation = getFocusAnimation();
       } else {
         // TODO
       }
     }
 
-    if (prevProps.focused !== this.props.focused) {
-      if (this.props.focused) {
+    if (prevProps.focused !== focused) {
+      if (focused) {
         // Change logo to back arrow
         this.focusAnimation.play();
       } else {
@@ -73,16 +55,38 @@ class App extends Component {
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions.bind(this));
+  }
+
+  /**
+   * Calculate & Update state of new dimensions
+   */
+  updateDimensions() {
+    const { media, changeAppMedia } = this.props;
+    const ratio = window.innerWidth / window.innerHeight;
+    if (ratio < 0.8) {
+      if (media === 'large') {
+        changeAppMedia('small');
+      }
+    }
+
+    if (media === 'small') {
+      changeAppMedia('large');
+    }
+  }
+
   unfocus() {
-    if (this.props.focused) {
-      this.props.changeFocus(false);
+    const { focused, changeAppFocus } = this.props;
+    if (focused) {
+      changeAppFocus(false);
     }
   }
 
   renderSmall() {
-    const { currentPageName} = this.props;
+    const { currentPageName } = this.props;
     return (
-      <div id="App" >
+      <div id="App">
         <Logo align="center" vertical={false} />
         <div className="flex-wrapper">
           <ImageFiller imageName={currentPageName}>
@@ -126,13 +130,12 @@ App.propTypes = {
   currentPageName: PropTypes.string.isRequired,
   focused: PropTypes.bool.isRequired,
   media: PropTypes.string.isRequired,
-  changeMedia: PropTypes.func.isRequired,
-  changeFocus: PropTypes.func.isRequired,
-  changePage: PropTypes.func.isRequired,
+  changeAppMedia: PropTypes.func.isRequired,
+  changeAppFocus: PropTypes.func.isRequired,
 };
 
 App.childContextTypes = {
-  colors: PropTypes.object,
+  colors: PropTypes.objectOf(PropTypes.string),
 };
 
 const mapStateToProps = state => ({
@@ -142,7 +145,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  changeMedia, changeFocus, changePage,
+  changeAppMedia: changeMedia,
+  changeAppFocus: changeFocus,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

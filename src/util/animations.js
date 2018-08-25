@@ -10,8 +10,7 @@ export const getFocusAnimation = () => {
   tl.fromTo($('.content-panel-wrapper'), 0.6,
     { width: '50vw' },
     { width: '90vw', ease: Power1.easeOut },
-    'start',
-  );
+    'start');
 
   // Logo
   tl.to($('#Logo'), duration, {
@@ -45,26 +44,22 @@ export const getFocusAnimation = () => {
 
   // Content
   tl.addLabel('content-start', 0.4);
-  tl.addLabel('body-start', "start+=0.7");
+  tl.addLabel('body-start', 'start+=0.7');
 
   tl.fromTo('#AboutContent .content-header', 0.5, {
     opacity: 0,
   }, {
     opacity: 1,
-    }, 'content-start'
-  );
+  }, 'content-start');
 
   // Introduce content-body one by one
   tl.staggerFromTo($('#AboutContent .content-body div'), 2,
     { opacity: 0 },
     { opacity: 1 },
-    0.2, 'body-start'
-  )
+    0.2, 'body-start');
 
   tl.pause();
   return tl;
-}
+};
 
-export const dummy = () => {
-  return null;
-}
+export const dummy = () => null;

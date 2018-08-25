@@ -8,26 +8,29 @@ import './Logo.css';
 
 class Logo extends Component {
   render() {
+    const { changeAppFocus } = this.props;
+
     return (
       <div id="Logo">
         <div className="logo-text">SEAN D KIM</div>
-        <div className="back-arrow" onClick={() => this.props.changeFocus(false)}>
-          <img src={BackArrow} alt="Back"/>
+        <div className="back-arrow" onClick={() => changeAppFocus(false)}>
+          <img src={BackArrow} alt="Back" />
         </div>
       </div>
     );
   }
 }
 
+Logo.propTypes = {
+  changeAppFocus: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({
   focused: state.focused,
 });
 
 const mapDispatchToProps = {
-  changeFocus,
-};
-Logo.propTypes = {
-  focused: PropTypes.bool.isRequired,
+  changeAppFocus: changeFocus,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Logo);

@@ -28,7 +28,7 @@ const absStyle = {
 
 export default class ImageFiller extends Component {
   render() {
-    const { imageName, colorName, darkenRatio } = this.props;
+    const { imageName, colorName, darkenRatio, children } = this.props;
 
     const isImage = imageName != null;
     const isColor = colorName != null;
@@ -40,26 +40,26 @@ export default class ImageFiller extends Component {
       const customStyle = {};
 
       switch (imageName) {
-      case 'about me':
-        image = AboutCover;
-        customStyle.backgroundPositionX = '-130px'; // TODO dependent on width?
-        break;
-      case 'projects':
-        image = ProjectsCover;
-        customStyle.backgroundPositionX = '-100px';
-        break;
-      case 'big fish':
-        image = BigFishCover;
-        customStyle.backgroundPositionX = '-50px';
-        break;
-      case 'grey-linen':
-        image = GreyLinen;
-        break;
-      case 'shallow-water':
-        image = ShallowWater;
-        break;
-      default:
-        console.error('Image name not found:', imageName);
+        case 'about me':
+          image = AboutCover;
+          customStyle.backgroundPositionX = '-130px'; // TODO dependent on width?
+          break;
+        case 'projects':
+          image = ProjectsCover;
+          customStyle.backgroundPositionX = '-100px';
+          break;
+        case 'big fish':
+          image = BigFishCover;
+          customStyle.backgroundPositionX = '-50px';
+          break;
+        case 'grey-linen':
+          image = GreyLinen;
+          break;
+        case 'shallow-water':
+          image = ShallowWater;
+          break;
+        default:
+          console.error('Image name not found:', imageName);
       }
 
       imgStyle = {
@@ -70,10 +70,11 @@ export default class ImageFiller extends Component {
     }
 
     if (isColor) {
-      if (this.context.colors[colorName] != null) {
+      const { colors } = this.context;
+      if (colors[colorName] != null) {
         colorStyle = {
           ...absStyle,
-          backgroundColor: this.context.colors[colorName] || colorName,
+          backgroundColor: colors[colorName] || colorName,
         };
       }
     }
@@ -83,22 +84,25 @@ export default class ImageFiller extends Component {
         {isImage && <div className="ImageFiller-image" style={imgStyle} />}
         {isColor && <div className="ImageFiller-color" style={colorStyle} />}
         {(darkenRatio > 0) && <div style={{ ...absStyle, backgroundColor: `rgba(0,0,0,${darkenRatio})` }} />}
-        { this.props.children }
+        { children }
       </div>
     );
   }
 }
 
+ImageFiller.defaultProps = {
+  imageName: null,
+  colorName: null,
+  darkenRatio: 0,
+};
+
 ImageFiller.propTypes = {
   imageName: PropTypes.string,
   colorName: PropTypes.string,
-  darkenRatio: PropTypes.number.isRequired,
+  darkenRatio: PropTypes.number,
+  children: PropTypes.node.isRequired,
 };
 
-ImageFiller.defaultProps = {
-  darkenRatio: 0,
-}
-
 ImageFiller.contextTypes = {
-  colors: PropTypes.object,
+  colors: PropTypes.objectOf(PropTypes.string),
 };

@@ -18,7 +18,7 @@
   font-weight: 600;
   /* TODO: ask if italic is better than text shadow */
   font-style: italic;
-  text-shadow: -3px 3px rgba(0,0,0,0.3);
+  /* text-shadow: -3px 3px rgba(0,0,0,0.3); */
 }
 
 .Content .content-body {

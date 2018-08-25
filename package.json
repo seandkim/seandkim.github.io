@@ -8,6 +8,7 @@
     "gsap": "^2.0.1",
     "jquery": "^3.3.1",
     "lodash": "^4.17.10",
+    "prop-types": "^15.6.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
@@ -16,6 +17,7 @@
     "redux": "^3.7.2"
   },
   "scripts": {
+    "dev": "react-scripts start",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
@@ -66,10 +68,10 @@
   },
   "devDependencies": {
     "eslint": "^4.17.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.6.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
     "react-redux": "^5.0.6"
   }
 }
