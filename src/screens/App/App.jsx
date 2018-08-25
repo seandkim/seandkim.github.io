@@ -9,7 +9,7 @@ import Logo from '../../components/Logo';
 import Nav from '../../components/Nav';
 import pageConfig from '../../json/pageConfig.json';
 import { changeMedia, changeFocus } from '../../actions';
-import { getFocusAnimation } from '../../util/animations';
+import { getLargeFocusAnimation, getSmallFocusAnimation } from '../../util/animations';
 import './App.css';
 
 class App extends Component {
@@ -32,24 +32,27 @@ class App extends Component {
 
   // Deals with animation for updating components
   componentDidUpdate(prevProps) {
-    const { media, focused } = this.props;
+    const { media, focused, currentPageName } = this.props;
 
     // Re-initialize animation if necessary
-    if (prevProps.media !== media) {
+    if (prevProps.media !== media || prevProps.currentPageName !== currentPageName) {
       // TODO: fix bug where changing media messes up focus animation (back arrow doesn't show)
       if (media === 'large') {
-        this.focusAnimation = getFocusAnimation();
+        this.focusAnimation = getLargeFocusAnimation();
       } else {
-        // TODO
+        this.focusAnimation = getSmallFocusAnimation();
       }
     }
 
     if (prevProps.focused !== focused) {
       if (focused) {
         // Change logo to back arrow
+        this.focusAnimation.timeScale(1);
         this.focusAnimation.play();
       } else {
         // Change back arrow to logo
+        this.focusAnimation.seek('reverse-start');
+        this.focusAnimation.timeScale(2);
         this.focusAnimation.reverse();
       }
     }

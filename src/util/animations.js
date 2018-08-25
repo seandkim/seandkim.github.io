@@ -1,7 +1,7 @@
 import $ from 'jquery';
-import { TimelineMax, Power1 } from 'gsap';
+import { TimelineMax, Power2 } from 'gsap';
 
-export const getFocusAnimation = () => {
+export const getLargeFocusAnimation = () => {
   const duration = 0.4;
   const rotationDegree = 180;
   const tl = new TimelineMax();
@@ -9,27 +9,40 @@ export const getFocusAnimation = () => {
   // Resize the panels
   tl.fromTo($('.content-panel-wrapper'), 0.6,
     { width: '50vw' },
-    { width: '90vw', ease: Power1.easeOut },
+    { width: '90vw', ease: Power2.easeOut },
     'start');
 
   // Logo
-  tl.to($('#Logo'), duration, {
-    x: -65, // TODO
+  tl.fromTo($('#Logo'), duration, {
+    x: 0, // TODO
+  }, {
+    x: -65,
   }, 'start');
-  tl.to($('#Logo .logo-text'), duration, {
+  tl.fromTo($('#Logo .logo-text'), duration, {
+    scaleX: 1,
+    rotation: 0,
+    opacity: 1,
+  }, {
     scaleX: 0,
     rotation: rotationDegree,
     transformOrigin: 'center',
     opacity: 0,
   }, 'start');
-  tl.from($('#Logo .back-arrow'), duration, {
+  tl.fromTo($('#Logo .back-arrow'), duration, {
     rotation: -rotationDegree,
     scaleX: 0,
     opacity: 0,
+  }, {
+    rotation: 0,
+    scaleX: 1,
+    opacity: 1,
   }, 'start');
 
   // Nav Tabs
-  tl.staggerTo($('.nav-tab'), duration, {
+  tl.staggerFromTo($('.nav-tab'), duration, {
+    scaleX: 1,
+    opacity: 1,
+  }, {
     scaleX: 0,
     opacity: 0,
     transformOrigin: '0 center',
@@ -43,8 +56,9 @@ export const getFocusAnimation = () => {
   }, 'start');
 
   // Content
-  tl.addLabel('content-start', 0.4);
-  tl.addLabel('body-start', 'start+=0.7');
+  tl.addLabel('content-start', 0.6);
+  tl.addLabel('body-start', 'content-start+=0.4');
+  tl.addLabel('reverse-start', 'body-start+=1.1');
 
   tl.fromTo('#AboutContent .content-header', 0.5, {
     opacity: 0,
@@ -62,4 +76,5 @@ export const getFocusAnimation = () => {
   return tl;
 };
 
-export const dummy = () => null;
+export const getSmallFocusAnimation = () => {
+};
