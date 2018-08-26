@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import AboutCover from './components/AboutContent';
 import Door from '../../components/Door';
 import './ContentPanel.css';
+import { ABOUT_ME } from '../../util/const';
 
 class ContentPanel extends Component {
   renderContent(currentPageName) {
     switch (currentPageName) {
     // change to constant
-      case 'about me':
+      case ABOUT_ME:
         return (
           <AboutCover />
         );
@@ -34,7 +35,7 @@ class ContentPanel extends Component {
         <div className="content-elem" style={{ zIndex: 10 }}>
           <div className="door-wrapper">
             <div className="door-text door-title">{currentPageName}</div>
-            <Door type="about me" disable={currentPageName !== 'about me'} />
+            <Door type={ABOUT_ME} disable={currentPageName !== ABOUT_ME} />
             <div className="door-text">Click to Enter</div>
           </div>
         </div>

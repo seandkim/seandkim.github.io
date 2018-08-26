@@ -8,6 +8,7 @@ import './Door.css';
 import AboutDoor from '../../assets/door/aboutme_door.png';
 import ProjectsDoor from '../../assets/door/projects_door.png';
 import BigFishDoor from '../../assets/door/bigfish_door.png';
+import { ABOUT_ME, PROJECTS, BIG_FISH } from '../../util/const';
 
 class Door extends Component {
   onClick() {
@@ -19,13 +20,13 @@ class Door extends Component {
     const { currentPageName, disable } = this.props;
     let imageName;
     switch (currentPageName) {
-      case 'about me':
+      case ABOUT_ME:
         imageName = AboutDoor;
         break;
-      case 'projects':
+      case PROJECTS:
         imageName = ProjectsDoor;
         break;
-      case 'big fish':
+      case BIG_FISH:
         imageName = BigFishDoor;
         break;
       default:

@@ -6,6 +6,7 @@ import ProjectsCover from '../../assets/cover/projects.JPG';
 import BigFishCover from '../../assets/cover/bigfish.png';
 import GreyLinen from '../../assets/texture/grey-linen.png';
 import ShallowWater from '../../assets/texture/shallow-water.png';
+import { ABOUT_ME, PROJECTS, BIG_FISH } from '../../util/const';
 
 const wrapperStyle = {
   display: 'flex',
@@ -40,15 +41,15 @@ export default class ImageFiller extends Component {
       const customStyle = {};
 
       switch (imageName) {
-        case 'about me':
+        case ABOUT_ME:
           image = AboutCover;
           customStyle.backgroundPositionX = '-130px'; // TODO dependent on width?
           break;
-        case 'projects':
+        case PROJECTS:
           image = ProjectsCover;
           customStyle.backgroundPositionX = '-100px';
           break;
-        case 'big fish':
+        case BIG_FISH:
           image = BigFishCover;
           customStyle.backgroundPositionX = '-50px';
           break;

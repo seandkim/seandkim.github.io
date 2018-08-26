@@ -1,16 +1,16 @@
-const initialState = {
-  currentPageName: 'about me',
-  focused: false,
-  media: 'small',
-};
+import { SMALL_DEVICE, LARGE_DEVICE, PAGE_NAMES, ABOUT_ME } from '../util/const';
 
-const pageNames = ['about me', 'projects', 'big fish'];
+const initialState = {
+  currentPageName: ABOUT_ME,
+  focused: false,
+  media: SMALL_DEVICE,
+};
 
 const pageReducer = (state = initialState, action) => {
   // console.log('pageReducer start with action=', action);
   switch (action.type) {
     case 'CHANGE_MEDIA':
-      if (['small', 'large'].indexOf(action.media) !== -1) {
+      if ([SMALL_DEVICE, LARGE_DEVICE].indexOf(action.media) !== -1) {
         return {
           ...state,
           media: action.media,
@@ -20,7 +20,7 @@ const pageReducer = (state = initialState, action) => {
       console.error('invalid action');
       break;
     case 'CHANGE_PAGE':
-      if (pageNames.indexOf(action.pageName) !== -1) {
+      if (PAGE_NAMES.indexOf(action.pageName) !== -1) {
         return {
           ...state,
           currentPageName: action.pageName,
@@ -31,10 +31,10 @@ const pageReducer = (state = initialState, action) => {
       break;
     case 'STEP_TO_PAGE':
       if (typeof (action.step) === 'number') {
-        const currIndex = pageNames.indexOf(this.state.currentPageName);
+        const currIndex = PAGE_NAMES.indexOf(this.state.currentPageName);
         return {
           ...state,
-          currentPageName: pageNames[(currIndex + action.step) % pageNames.length],
+          currentPageName: PAGE_NAMES[(currIndex + action.step) % PAGE_NAMES.length],
           focused: false,
         };
       }

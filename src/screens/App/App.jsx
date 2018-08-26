@@ -7,10 +7,10 @@ import ContentPanel from '../ContentPanel';
 import ImageFiller from '../../components/ImageFiller';
 import Logo from '../../components/Logo';
 import Nav from '../../components/Nav';
-import pageConfig from '../../json/pageConfig.json';
 import { changeMedia, changeFocus } from '../../actions';
-import { getLargeFocusAnimation, getSmallFocusAnimation } from '../../util/animations';
+import { initLargeFocusAnimation, initSmallFocusAnimation } from '../../util/animations';
 import './App.css';
+import { SMALL_DEVICE, LARGE_DEVICE, PAGE_CONFIG } from '../../util/const';
 
 class App extends Component {
   // Global variables
@@ -26,8 +26,15 @@ class App extends Component {
 
   // Check dimension & initialize all multi-component variables
   componentDidMount() {
+    const { media } = this.props;
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions.bind(this));
+
+    if (media === SMALL_DEVICE) {
+      this.focusAnimation = initSmallFocusAnimation();
+    } else {
+      this.focusAnimation = initLargeFocusAnimation();
+    }
   }
 
   // Deals with animation for updating components
@@ -37,10 +44,10 @@ class App extends Component {
     // Re-initialize animation if necessary
     if (prevProps.media !== media || prevProps.currentPageName !== currentPageName) {
       // TODO: fix bug where changing media messes up focus animation (back arrow doesn't show)
-      if (media === 'large') {
-        this.focusAnimation = getLargeFocusAnimation();
+      if (media === LARGE_DEVICE) {
+        this.focusAnimation = initLargeFocusAnimation();
       } else {
-        this.focusAnimation = getSmallFocusAnimation();
+        this.focusAnimation = initSmallFocusAnimation();
       }
     }
 
@@ -69,13 +76,13 @@ class App extends Component {
     const { media, changeAppMedia } = this.props;
     const ratio = window.innerWidth / window.innerHeight;
     if (ratio < 0.8) {
-      if (media === 'large') {
-        changeAppMedia('small');
+      if (media === LARGE_DEVICE) {
+        changeAppMedia(SMALL_DEVICE);
       }
-    }
-
-    if (media === 'small') {
-      changeAppMedia('large');
+    } else {
+      if (media === SMALL_DEVICE) {
+        changeAppMedia(LARGE_DEVICE);
+      }
     }
   }
 
@@ -86,32 +93,27 @@ class App extends Component {
     }
   }
 
-  renderSmall() {
-    const { currentPageName } = this.props;
-    return (
-      <div id="App">
-        <Logo align="center" vertical={false} />
-        <div className="flex-wrapper">
-          <ImageFiller imageName={currentPageName}>
-            <ContentPanel />
-          </ImageFiller>
-        </div>
-      </div>
-    );
-  }
-
   render() {
-    const { currentPageName, focused, media } = this.props;
+    const { currentPageName, media } = this.props;
 
-    if (media === 'small') {
-      return this.renderSmall();
+    if (media === SMALL_DEVICE) {
+      return (
+        <div id="App">
+          <Logo />
+          <div className="flex-wrapper">
+            <ImageFiller imageName={currentPageName}>
+              <ContentPanel />
+            </ImageFiller>
+          </div>
+        </div>
+      );
     }
 
-    const { sideColor, sideTexture, darkenRatio } = pageConfig[currentPageName];
+    const { sideColor, sideTexture, darkenRatio } = PAGE_CONFIG[currentPageName];
 
     return (
       <div id="App">
-        <Logo align="left" vertical={!!focused} />
+        <Logo />
         <div className="flex-wrapper">
           <div className="half-screen-panel nav-panel-wrapper" onClick={this.unfocus.bind(this)}>
             <ImageFiller imageName={currentPageName} darkenRatio={darkenRatio}>

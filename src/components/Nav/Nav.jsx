@@ -5,17 +5,13 @@ import { connect } from 'react-redux';
 
 import { changePage } from '../../actions';
 import './Nav.css';
+import { PAGE_NAMES } from '../../util/const';
 
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.pages = ['about me', 'projects', 'big fish']; // change to context
-  }
-
   render() {
     const { currentPageName, changeAppPage } = this.props;
 
-    const tabs = _.map(this.pages, (pageName, i) => {
+    const tabs = _.map(PAGE_NAMES, (pageName, i) => {
       const classNames = pageName === currentPageName ? 'nav-tab selected' : 'nav-tab';
 
       return (

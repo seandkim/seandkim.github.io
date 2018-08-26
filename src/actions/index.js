@@ -1,11 +1,11 @@
 export const changeMedia = media => ({
   type: 'CHANGE_MEDIA',
-  media, // {string}: small, large
+  media, // {string}: <refer to const.js>
 });
 
 export const changePage = pageName => ({
   type: 'CHANGE_PAGE',
-  pageName, // {string}: about me, projects, big fish
+  pageName, // {string}: <refer to const.js>
 });
 
 export const stepToPage = step => ({
