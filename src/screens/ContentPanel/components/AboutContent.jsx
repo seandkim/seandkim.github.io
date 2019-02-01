@@ -16,6 +16,7 @@ class AboutContent extends Component {
     );
     const contactMe = <span className="link" onClick={this.contactMeClicked}>contact me</span>;
 
+    // TODO: make the link clickable
     return (
       <div id="AboutContent" className="Content">
         <div className="content-header">
