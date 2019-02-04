@@ -40,6 +40,12 @@ const initContentAnimation = (tl) => {
     opacity: 1,
   }, 'content-start');
 
+  tl.fromTo('#AboutContent .content-body', 0.5, {
+    zIndex: 0,
+  }, {
+    zIndex: 20,
+  }, 'content-start');
+
   // Introduce content-body one by one
   tl.staggerFromTo($('#AboutContent .content-body div'), 2,
     { opacity: 0 },

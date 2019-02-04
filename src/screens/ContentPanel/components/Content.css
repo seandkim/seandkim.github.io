@@ -22,10 +22,11 @@
 }
 
 .Content .content-body {
+  /* z-index: 20; */
   height: 35vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 #AboutContent .link {
