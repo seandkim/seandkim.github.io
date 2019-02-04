@@ -3,6 +3,13 @@ module.exports = {
     "globals": {
         "window": true,
     },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["src"]
+            }
+        }
+    },
     "rules": {
         "class-methods-use-this": 0,
         "jsx-a11y/click-events-have-key-events": 0,

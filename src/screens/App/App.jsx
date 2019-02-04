@@ -3,29 +3,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // import ContactInfo from './components/ContactInfo';
-import Logo from '../../components/Logo';
-import { changeMedia, changeFocus } from '../../actions';
-import { initLargeFocusAnimation, initSmallFocusAnimation } from '../../util/animations';
+import Logo from 'components/Logo';
+import { changeMedia, changeFocus } from 'actions';
+import { initLargeFocusAnimation, initSmallFocusAnimation } from 'util/animations';
 import './App.css';
-import { SMALL_DEVICE, LARGE_DEVICE, PAGE_CONFIG } from '../../util/const';
+import { SMALL_DEVICE, LARGE_DEVICE, PAGE_CONFIG } from 'util/const';
 
-// Images
-import AboutCover from '../../assets/cover/about.png';
-import ProjectsCover from '../../assets/cover/projects.JPG';
-import BigFishCover from '../../assets/cover/bigfish.png';
+import { getBackgroundImageStyle, getPanelColor } from 'util/image';
+import { getPanelGradientStyle } from '../../util/image';
 
 class App extends Component {
-  // Global variables
-  getChildContext() {
-    return {
-      colors: {
-        darkGray: '#2E2E2D', // about me
-        olive: 'rgba(46, 76, 12, 0.82)', // projects
-        lightBlue: 'rgba(35, 127, 177, 0.6)', // big fish
-      },
-    };
-  }
-
   // Check dimension & initialize all multi-component variables
   componentDidMount() {
     const { media } = this.props;
@@ -96,11 +83,15 @@ class App extends Component {
   // }
 
   render() {
+    const { currentPageName } = this.props;
+
     return (
-      <div id="App" style={{ color: 'black', backgroundImage: `url(${AboutCover})` }}>
+      <div id="App" style={getBackgroundImageStyle(currentPageName)}>
         <Logo />
-        <div>
-          Hello
+        <div className="gradient-div" style={getPanelGradientStyle(getPanelGradientStyle)}>
+          <div className="right-panel">
+            Hello
+          </div>
         </div>
       </div>
     );

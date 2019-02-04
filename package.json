@@ -17,12 +17,12 @@
     "redux": "^3.7.2"
   },
   "scripts": {
-    "dev": "react-scripts start",
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "dev": "NODE_PATH=src/ react-scripts start",
+    "start": "NODE_PATH=src/ node scripts/start.js",
+    "build": "NODE_PATH=src/ node scripts/build.js",
+    "test": "NODE_PATH=src/ node scripts/test.js --env=jsdom",
+    "predeploy": "NODE_PATH=src/ npm run build",
+    "deploy": "NODE_PATH=src/ gh-pages -b master -d build"
   },
   "jest": {
     "collectCoverageFrom": [
