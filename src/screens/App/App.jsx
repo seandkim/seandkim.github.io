@@ -3,14 +3,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // import ContactInfo from './components/ContactInfo';
-import ContentPanel from '../ContentPanel';
-import ImageFiller from '../../components/ImageFiller';
 import Logo from '../../components/Logo';
-import Nav from '../../components/Nav';
 import { changeMedia, changeFocus } from '../../actions';
 import { initLargeFocusAnimation, initSmallFocusAnimation } from '../../util/animations';
 import './App.css';
 import { SMALL_DEVICE, LARGE_DEVICE, PAGE_CONFIG } from '../../util/const';
+
+// Images
+import AboutCover from '../../assets/cover/about.png';
+import ProjectsCover from '../../assets/cover/projects.JPG';
+import BigFishCover from '../../assets/cover/bigfish.png';
 
 class App extends Component {
   // Global variables
@@ -86,45 +88,19 @@ class App extends Component {
     }
   }
 
-  unfocus() {
-    const { focused, changeAppFocus } = this.props;
-    if (focused) {
-      changeAppFocus(false);
-    }
-  }
+  // unfocus() {
+  //   const { focused, changeAppFocus } = this.props;
+  //   if (focused) {
+  //     changeAppFocus(false);
+  //   }
+  // }
 
   render() {
-    const { currentPageName, media } = this.props;
-
-    if (media === SMALL_DEVICE) {
-      return (
-        <div id="App">
-          <Logo />
-          <div className="flex-wrapper">
-            <ImageFiller imageName={currentPageName}>
-              <ContentPanel />
-            </ImageFiller>
-          </div>
-        </div>
-      );
-    }
-
-    const { sideColor, sideTexture, darkenRatio } = PAGE_CONFIG[currentPageName];
-
     return (
-      <div id="App">
+      <div id="App" style={{ color: 'black', backgroundImage: `url(${AboutCover})` }}>
         <Logo />
-        <div className="flex-wrapper">
-          <div className="half-screen-panel nav-panel-wrapper" onClick={this.unfocus.bind(this)}>
-            <ImageFiller imageName={currentPageName} darkenRatio={darkenRatio}>
-              <Nav />
-            </ImageFiller>
-          </div>
-          <div className="half-screen-panel content-panel-wrapper">
-            <ImageFiller imageName={sideTexture} colorName={sideColor}>
-              <ContentPanel />
-            </ImageFiller>
-          </div>
+        <div>
+          Hello
         </div>
       </div>
     );
