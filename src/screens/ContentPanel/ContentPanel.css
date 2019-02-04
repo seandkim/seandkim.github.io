@@ -1,52 +1,14 @@
 #ContentPanel {
-  width: 100%;
   height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .door-wrapper {
-  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
-
-.door-text {
-  color: white;
-  font-family: 'Encode Sans Semi Condensed', sans-serif;
-  font-weight: 100;
-  font-size: 25px;
-}
-
-.door-title {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-/* TODO: scale up when hovered */
-.construction-message {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 37%;
-  margin: auto;
-  transform: rotate(-20deg);
-  text-align: center;
-
-  /* text */
-  color: white;
-  font-family: Satisfy;
-  font-size: 60px;
-  text-shadow: -3px 3px rgba(0,0,0,0.5);
-}
-
-.content-elem {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

@@ -34,7 +34,7 @@ export const getPanelGradientStyle = (pageName) => {
   switch (pageName) {
     case ABOUT_ME:
       return {
-        background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 50%)',
+        // background: 'linear-gradient(to right, rgba(46,46,45,0) 0%, rgba(46,46,45,1) 90%)',
       };
     case PROJECTS:
       return {

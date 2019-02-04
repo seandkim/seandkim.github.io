@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 // import ContactInfo from './components/ContactInfo';
 import Logo from 'components/Logo';
 import Nav from 'components/Nav';
-import Door from 'components/Door/Door';
 
 import { changeMedia, changeFocus } from 'actions';
 import { initLargeFocusAnimation, initSmallFocusAnimation } from 'util/animations';
@@ -13,6 +12,7 @@ import { SMALL_DEVICE, LARGE_DEVICE, PAGE_CONFIG } from 'util/const';
 import './App.css';
 
 import { getBackgroundImageStyle, getPanelGradientStyle } from 'util/image';
+import ContentPanel from '../ContentPanel/ContentPanel';
 
 class App extends Component {
   // Check dimension & initialize all multi-component variables
@@ -49,7 +49,6 @@ class App extends Component {
         this.focusAnimation.play();
       } else {
         // Change back arrow to logo
-        this.focusAnimation.seek('reverse-start');
         this.focusAnimation.timeScale(2);
         this.focusAnimation.reverse();
       }
@@ -77,12 +76,12 @@ class App extends Component {
     }
   }
 
-  // unfocus() {
-  //   const { focused, changeAppFocus } = this.props;
-  //   if (focused) {
-  //     changeAppFocus(false);
-  //   }
-  // }
+  unfocus() {
+    const { focused, changeAppFocus } = this.props;
+    if (focused) {
+      changeAppFocus(false);
+    }
+  }
 
   render() {
     const { currentPageName } = this.props;
@@ -91,13 +90,11 @@ class App extends Component {
       <div id="App" style={getBackgroundImageStyle(currentPageName)}>
         <Logo />
         <div className="gradient-div" style={getPanelGradientStyle(currentPageName)}>
-          <div className="left-panel">
+          <div className="half-panel left-panel">
             <Nav />
           </div>
-          <div className="right-panel">
-            About Me
-            <Door />
-            Click to Enter
+          <div className="half-panel right-panel">
+            <ContentPanel />
           </div>
         </div>
       </div>

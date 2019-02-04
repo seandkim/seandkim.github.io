@@ -3,20 +3,19 @@ import { TimelineMax, Power2 } from 'gsap';
 
 const initLogoAnimation = (tl, duration) => {
   const rotationDegree = 180;
-  // TODO: delete
-  // tl.fromTo($('#Logo'), duration, {
-  //   x: 0, // TODO
-  // }, {
-  //   // x: -65,
-  // }, 'start');
+  tl.fromTo($('#Logo'), duration, {
+    x: 0, // TODO
+  }, {
+    x: -65,
+  }, 'start');
   tl.fromTo($('#Logo .logo-text'), duration, {
-    rotation: 0,
     scaleX: 1,
+    rotation: 0,
     opacity: 1,
   }, {
+    scaleX: 0,
     rotation: rotationDegree,
     transformOrigin: 'center',
-    scaleX: 0,
     opacity: 0,
   }, 'start');
   tl.fromTo($('#Logo .back-arrow'), duration, {
@@ -30,23 +29,49 @@ const initLogoAnimation = (tl, duration) => {
   }, 'start');
 };
 
-const initContentAnimation = (tl, duration) => {
-  tl.fromTo($('.gradient-div'), duration, {
-    background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 50%)',
+const initContentAnimation = (tl) => {
+  tl.addLabel('content-start', 0.6);
+  tl.addLabel('body-start', 'content-start+=0.4');
+  tl.addLabel('reverse-start', 'body-start+=1.1');
+
+  tl.fromTo('#AboutContent .content-header', 0.5, {
+    opacity: 0,
   }, {
-    background: 'linear-gradient(to right, rgba(46,46,45,0) 5%, rgba(46,46,45,1) 30%)',
-  }, 'start');
+    opacity: 1,
+  }, 'content-start');
+
+  tl.fromTo('#AboutContent .content-body', 0.5, {
+    zIndex: 0,
+  }, {
+    zIndex: 20,
+  }, 'content-start');
+
+  // Introduce content-body one by one
+  tl.staggerFromTo($('#AboutContent .content-body div'), 2,
+    { opacity: 0 },
+    { opacity: 1 },
+    0.2, 'body-start');
 };
 
 const initDoorAnimation = (tl, duration) => {
-  tl.fromTo($('.door-wrapper'), duration, { opacity: 1 }, { opacity: 0 }, 'start');
+  tl.fromTo($('.door-wrapper'), duration, {
+    opacity: 1,
+  }, {
+    opacity: 0,
+  }, 'start');
 };
 
 export const initLargeFocusAnimation = () => {
   const duration = 0.4;
   const tl = new TimelineMax();
   tl.addLabel('start');
+  // Resize the panels
+  tl.fromTo($('.content-panel-wrapper'), 0.6,
+    { width: '50vw' },
+    { width: '90vw', ease: Power2.easeOut },
+    'start');
 
+  // Logo
   initLogoAnimation(tl, duration);
 
   // Nav Tabs
@@ -59,8 +84,11 @@ export const initLargeFocusAnimation = () => {
     transformOrigin: '0 center',
   }, 0, 'start');
 
-  initDoorAnimation(tl, duration); // for reverse animation
-  initContentAnimation(tl, duration);
+  // Door (for reverse animation)
+  initDoorAnimation(tl, duration);
+
+  // Content
+  initContentAnimation(tl);
 
   tl.pause();
   return tl;
