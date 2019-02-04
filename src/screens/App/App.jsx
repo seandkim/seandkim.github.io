@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 
 // import ContactInfo from './components/ContactInfo';
 import Logo from 'components/Logo';
+import Nav from 'components/Nav';
+import Door from 'components/Door/Door';
+
 import { changeMedia, changeFocus } from 'actions';
 import { initLargeFocusAnimation, initSmallFocusAnimation } from 'util/animations';
-import './App.css';
 import { SMALL_DEVICE, LARGE_DEVICE, PAGE_CONFIG } from 'util/const';
+import './App.css';
 
-import { getBackgroundImageStyle, getPanelColor } from 'util/image';
-import { getPanelGradientStyle } from '../../util/image';
+import { getBackgroundImageStyle, getPanelGradientStyle } from 'util/image';
 
 class App extends Component {
   // Check dimension & initialize all multi-component variables
@@ -88,9 +90,14 @@ class App extends Component {
     return (
       <div id="App" style={getBackgroundImageStyle(currentPageName)}>
         <Logo />
-        <div className="gradient-div" style={getPanelGradientStyle(getPanelGradientStyle)}>
+        <div className="gradient-div" style={getPanelGradientStyle(currentPageName)}>
+          <div className="left-panel">
+            <Nav />
+          </div>
           <div className="right-panel">
-            Hello
+            About Me
+            <Door />
+            Click to Enter
           </div>
         </div>
       </div>

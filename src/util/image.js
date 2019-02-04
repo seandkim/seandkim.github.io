@@ -34,16 +34,16 @@ export const getPanelGradientStyle = (pageName) => {
   switch (pageName) {
     case ABOUT_ME:
       return {
-        background: 'linear-gradient(to right, rgba(46,46,45,0) 45%, rgba(46,46,45,1) 55%)',
+        background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 50%)',
       };
     case PROJECTS:
       return {
-        background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 55%)',
+        // background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 55%)',
       };
     case BIG_FISH:
     default:
       return {
-        background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 55%)',
+        // background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 55%)',
       };
   }
 };
