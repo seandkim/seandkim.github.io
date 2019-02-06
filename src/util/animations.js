@@ -32,9 +32,10 @@ const initLogoAnimation = (tl, duration) => {
 
 const initContentAnimation = (tl, duration) => {
   tl.fromTo($('.gradient-div'), duration, {
-    background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 50%)',
+    // TODO: set using image.js
+    // background: 'linear-gradient(to right, rgba(46,46,45,0) 50%, rgba(46,46,45,1) 50%)',
   }, {
-    background: 'linear-gradient(to right, rgba(46,46,45,0) 5%, rgba(46,46,45,1) 30%)',
+    // background: 'linear-gradient(to right, rgba(46,46,45,0) 5%, rgba(46,46,45,1) 30%)',
   }, 'start');
 };
 

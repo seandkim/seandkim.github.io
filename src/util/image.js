@@ -1,15 +1,17 @@
 import { ABOUT_ME, PROJECTS, BIG_FISH } from './const';
 
 // Images
-import AboutCover from '../assets/cover/about.png';
-import ProjectsCover from '../assets/cover/projects.JPG';
-import BigFishCover from '../assets/cover/bigfish.png';
+import AboutCover from 'assets/cover/about.png';
+import ProjectsCover from 'assets/cover/projects.JPG';
+import BigFishCover from 'assets/cover/bigfish.png';
+import ShallowWater from 'assets/texture/shallow-water.png';
 
 const darkGray = '#2E2E2D'; // about me
 const olive = 'rgba(46, 76, 12, 0.82)'; // projects
 const lightBlue = 'rgba(35, 127, 177, 0.6)'; // big fish
 
 export const getBackgroundImageStyle = (pageName) => {
+  // return;
   switch (pageName) {
     case ABOUT_ME:
       return {
@@ -34,16 +36,18 @@ export const getPanelGradientStyle = (pageName) => {
   switch (pageName) {
     case ABOUT_ME:
       return {
-        // background: 'linear-gradient(to right, rgba(46,46,45,0) 0%, rgba(46,46,45,1) 90%)',
+        background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 50%)',
       };
     case PROJECTS:
       return {
-        // background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 55%)',
+        background: 'linear-gradient(to right, rgba(46,76,12,0) 40%, rgba(46,76,12,100) 50%)',
       };
     case BIG_FISH:
     default:
       return {
-        // background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 55%)',
+        background: `url(${ShallowWater})`,
+        WebkitMaskImage: '-webkit-linear-gradient(right, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 50%)',
+        // backgroundImage: `linear-gradient(to right, rgba(35,127,177,0) 40%, rgba(35,127,177,1) 50%)`,
       };
   }
 };
@@ -59,5 +63,3 @@ export const getPanelColor = (pageName) => {
       return lightBlue;
   }
 };
-
-export const dummy = 'DUMMY';
