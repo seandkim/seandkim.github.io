@@ -31,11 +31,18 @@ const initLogoAnimation = (tl, duration) => {
 };
 
 const initContentAnimation = (tl, duration) => {
-  tl.fromTo($('.gradient-div'), duration, {
+  tl.fromTo($('.gradient-color'), duration, {
     // TODO: set using image.js
-    // background: 'linear-gradient(to right, rgba(46,46,45,0) 50%, rgba(46,46,45,1) 50%)',
+    // backgroundImage: 'linear-gradient(to right, rgba(112, 171, 189, 0) 50%, rgba(112, 171, 189, 1) 50%)',
   }, {
-    // background: 'linear-gradient(to right, rgba(46,46,45,0) 5%, rgba(46,46,45,1) 30%)',
+    // backgroundImage: 'linear-gradient(to right, rgba(112, 171, 189, 0) 10%, rgba(112, 171, 189, 1) 20%)',
+  }, 'start');
+
+  tl.fromTo($('.gradient-image'), duration, {
+    // TODO: set using image.js
+    // WebkitMaskImage: '-webkit-linear-gradient(right, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 50%)',
+  }, {
+    // WebkitMaskImage: '-webkit-linear-gradient(right, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0) 90%)',
   }, 'start');
 };
 

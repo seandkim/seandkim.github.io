@@ -1,7 +1,7 @@
-import { SMALL_DEVICE, LARGE_DEVICE, PAGE_NAMES, ABOUT_ME, BIG_FISH } from '../util/const';
+import { SMALL_DEVICE, LARGE_DEVICE, PAGE_NAMES, ABOUT_ME, BIG_FISH, PROJECTS } from '../util/const';
 
 const initialState = {
-  currentPageName: BIG_FISH,
+  currentPageName: PROJECTS,
   focused: false,
   media: SMALL_DEVICE,
 };

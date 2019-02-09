@@ -11,7 +11,7 @@ import { initLargeFocusAnimation, initSmallFocusAnimation } from 'util/animation
 import { SMALL_DEVICE, LARGE_DEVICE, PAGE_CONFIG } from 'util/const';
 import './App.css';
 
-import { getBackgroundImageStyle, getPanelGradientStyle } from 'util/image';
+import { getBackgroundImageStyle, getGradientStyle } from 'util/image';
 import ContentPanel from '../ContentPanel/ContentPanel';
 
 class App extends Component {
@@ -85,11 +85,14 @@ class App extends Component {
 
   render() {
     const { currentPageName } = this.props;
+    const gradientStyle = getGradientStyle(currentPageName);
 
     return (
       <div id="App" style={getBackgroundImageStyle(currentPageName)}>
         <Logo />
-        <div className="gradient-div" style={getPanelGradientStyle(currentPageName)}>
+        <div className="gradient gradient-color" style={gradientStyle.color} />
+        <div className="gradient gradient-image" style={gradientStyle.image} />
+        <div className="whole-panel">
           <div className="half-panel left-panel">
             <Nav />
           </div>
