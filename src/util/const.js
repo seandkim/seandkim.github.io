@@ -8,6 +8,7 @@ export const PAGE_NAMES = [
   BIG_FISH,
 ];
 
+// TODO: delete?
 export const PAGE_CONFIG = {};
 PAGE_CONFIG[ABOUT_ME] = {
   imageName: 'AboutCover',

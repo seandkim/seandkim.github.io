@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import { TimelineMax, Power2 } from 'gsap';
+import { getGradientStyle } from 'util/image';
+import { SMALL_DEVICE } from './const';
 
 const initLogoAnimation = (tl, duration) => {
   const rotationDegree = 180;
@@ -30,27 +32,28 @@ const initLogoAnimation = (tl, duration) => {
   }, 'start');
 };
 
-const initContentAnimation = (tl, duration) => {
-  tl.fromTo($('.gradient-color'), duration, {
-    // TODO: set using image.js
-    // backgroundImage: 'linear-gradient(to right, rgba(112, 171, 189, 0) 50%, rgba(112, 171, 189, 1) 50%)',
-  }, {
-    // backgroundImage: 'linear-gradient(to right, rgba(112, 171, 189, 0) 10%, rgba(112, 171, 189, 1) 20%)',
-  }, 'start');
-
-  tl.fromTo($('.gradient-image'), duration, {
-    // TODO: set using image.js
-    // WebkitMaskImage: '-webkit-linear-gradient(right, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 50%)',
-  }, {
-    // WebkitMaskImage: '-webkit-linear-gradient(right, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0) 90%)',
-  }, 'start');
+const initGradientAnimation = (tl, duration, currentPageName) => {
+  const gradientStyle = getGradientStyle(currentPageName);
+  tl.fromTo($('.gradient-color'), duration, gradientStyle.before.color, gradientStyle.after.color, 'start');
+  tl.fromTo($('.gradient-image'), duration, gradientStyle.before.image, gradientStyle.after.image, 'start');
 };
 
 const initDoorAnimation = (tl, duration) => {
   tl.fromTo($('.door-wrapper'), duration, { opacity: 1 }, { opacity: 0 }, 'start');
 };
 
-export const initLargeFocusAnimation = () => {
+export const initFocusAnimation = (currentPageName, media) => {
+  if (media === SMALL_DEVICE) {
+    const duration = 0.4;
+    const tl = new TimelineMax();
+    tl.addLabel('start');
+    initLogoAnimation(tl, duration);
+    initDoorAnimation(tl, duration);
+    initGradientAnimation(tl);
+    tl.pause();
+    return tl;
+  }
+
   const duration = 0.4;
   const tl = new TimelineMax();
   tl.addLabel('start');
@@ -68,19 +71,10 @@ export const initLargeFocusAnimation = () => {
   }, 0, 'start');
 
   initDoorAnimation(tl, duration); // for reverse animation
-  initContentAnimation(tl, duration);
+  initGradientAnimation(tl, duration, currentPageName);
 
   tl.pause();
   return tl;
 };
 
-export const initSmallFocusAnimation = () => {
-  const duration = 0.4;
-  const tl = new TimelineMax();
-  tl.addLabel('start');
-  initLogoAnimation(tl, duration);
-  initDoorAnimation(tl, duration);
-  initContentAnimation(tl);
-  tl.pause();
-  return tl;
-};
+export const dummy=3;

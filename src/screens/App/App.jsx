@@ -7,8 +7,8 @@ import Logo from 'components/Logo';
 import Nav from 'components/Nav';
 
 import { changeMedia, changeFocus } from 'actions';
-import { initLargeFocusAnimation, initSmallFocusAnimation } from 'util/animations';
-import { SMALL_DEVICE, LARGE_DEVICE, PAGE_CONFIG } from 'util/const';
+import { initFocusAnimation } from 'util/animations';
+import { SMALL_DEVICE, LARGE_DEVICE } from 'util/const';
 import './App.css';
 
 import { getBackgroundImageStyle, getGradientStyle } from 'util/image';
@@ -17,15 +17,11 @@ import ContentPanel from '../ContentPanel/ContentPanel';
 class App extends Component {
   // Check dimension & initialize all multi-component variables
   componentDidMount() {
-    const { media } = this.props;
+    const { media, currentPageName } = this.props;
     this.updateDimensions();
     window.addEventListener('resize', this.updateDimensions.bind(this));
 
-    if (media === SMALL_DEVICE) {
-      this.focusAnimation = initSmallFocusAnimation();
-    } else {
-      this.focusAnimation = initLargeFocusAnimation();
-    }
+    this.focusAnimation = initFocusAnimation(currentPageName, media);
   }
 
   // Deals with animation for updating components
@@ -35,11 +31,7 @@ class App extends Component {
     // Re-initialize animation if necessary
     if (prevProps.media !== media || prevProps.currentPageName !== currentPageName) {
       // TODO: fix bug where changing media messes up focus animation (back arrow doesn't show)
-      if (media === LARGE_DEVICE) {
-        this.focusAnimation = initLargeFocusAnimation();
-      } else {
-        this.focusAnimation = initSmallFocusAnimation();
-      }
+      this.focusAnimation = initFocusAnimation(currentPageName, media);
     }
 
     if (prevProps.focused !== focused) {

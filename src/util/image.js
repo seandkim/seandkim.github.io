@@ -33,39 +33,53 @@ export const getBackgroundImageStyle = (pageName) => {
   }
 };
 
+const setAlpha = (rgb, a) => {
+  const rgba = rgb.replace(/rgb/i, 'rgba');
+  return rgba.replace(/\)/i, `, ${a})`);
+};
+
 export const getGradientStyle = (pageName) => {
+  let rgb;
+  let textureImage;
+  let imageAlpha;
   switch (pageName) {
     case ABOUT_ME:
-      return {
-        color: {
-          background: 'linear-gradient(to right, rgba(46,46,45,0) 40%, rgba(46,46,45,1) 50%)',
-        },
-        image: {
-        },
-      };
+      rgb = 'rgb(46, 46, 45)';
+      break;
     case PROJECTS:
-      return {
-        color: {
-          background: 'linear-gradient(to right, rgba(46,76,12,0) 40%, rgba(46,76,12,100) 50%)',
-        },
-        image: {
-          background: `url(${GreyLinen})`,
-          WebkitMaskImage: '-webkit-linear-gradient(right, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 70%)',
-        },
-      };
+      rgb = 'rgb(46,76,12)';
+      textureImage = GreyLinen;
+      imageAlpha = 0.2;
+      break;
     case BIG_FISH:
     default:
-      return {
-        color: {
-          backgroundImage: 'linear-gradient(to right, rgba(112, 171, 189, 0) 40%, rgba(112, 171, 189, 1) 50%)',
-          // background: 'rgba(113, 159, 184, 1)',
-        },
-        image: {
-          background: `url(${ShallowWater})`,
-          WebkitMaskImage: '-webkit-linear-gradient(right, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 50%)',
-        },
-      };
+      // TODO: tile edge is showing at the right
+      rgb = 'rgb(112, 171, 189)';
+      textureImage = ShallowWater;
+      imageAlpha = 0.2;
   }
+
+  const black = 'rgb(0,0,0)';
+
+  return {
+    before: {
+      color: {
+        background: `linear-gradient(to right, ${setAlpha(rgb, 0)} 50%, ${setAlpha(rgb, 1)} 50%)`,
+      },
+      image: {
+        background: `url(${textureImage})`,
+        WebkitMaskImage: `-webkit-linear-gradient(right, ${setAlpha(rgb, imageAlpha)} 50%, rgba(0,0,0,0) 50%)`,
+      },
+    },
+    after: {
+      color: {
+        background: `linear-gradient(to right, ${setAlpha(rgb, 0.3)} 5%, ${setAlpha(rgb, 1)} 15%)`,
+      },
+      image: {
+        WebkitMaskImage: `-webkit-linear-gradient(right, ${setAlpha(black, imageAlpha)} 80%, rgba(0,0,0,0) 100%)`,
+      },
+    },
+  };
 };
 
 export const getPanelColor = (pageName) => {
